@@ -22,18 +22,35 @@ public class StudentManagement {
     }
     
     public void display_student() {
-        String message = "Student details:\n\n";
+        int iterations = 0;
+        String message = "";
         
         for(Student student : students){
+            iterations++;
+            message += String.format("Student %s:\n\n", iterations);
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
+            message += "Modules Taken:\n";
+            
+            for (Module module : student.getModules_Taken()) {
+                iterations++;
+                message += String.format("%s. %s/%s/%s: %s\n", 
+                        iterations, 
+                        module.getModule_cd(), 
+                        module.getModule_cd(), 
+                        module.getCredit_units(), 
+                        module.getStudent_marks()
+                );
+                
+            }
         }
         
         JOptionPane.showMessageDialog(null,
                 message,
                 "All Student Report",
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE
+            );
     }
     
     public void search_studentName() {
