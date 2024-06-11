@@ -54,7 +54,7 @@ public class Student {
         return classes;
     }
     
-    public String getModules_Taken() {
+    public Module[] getModules_Taken() {
         return modules_taken;
     }
     
