@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package javaca1;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +22,18 @@ public class StudentManagement {
     }
     
     public void display_student() {
+        String message = "Student details:\n\n";
         
+        for(Student student : students){
+            message += "Name: " + student.getName() + "\n";
+            message += "Admin No.: " + student.getAdminNo()+ "\n";
+            message += "Class: " + student.getClasses() + "\n";
+        }
+        
+        JOptionPane.showMessageDialog(null,
+                message,
+                "All Student Report",
+                JOptionPane.INFORMATION_MESSAGE);
     }
     
     public void search_student() {
