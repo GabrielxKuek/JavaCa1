@@ -12,13 +12,36 @@ public class Student {
     private String name;
     private String adminNo;
     private String classes;
+    private Module[] modules_taken;
+    
+//    public Module[] modules_taken = {
+//        new Module("ST0405", "GabrielStudys", 4, 0.0),
+//        new Module("ST0504", "DarrenStudys", 3, 0.0),
+//        new Module("ST0690", "KevinGayStudys", 3, 0.0),
+//        new Module("ST0420", "RafaelHonestStudys", 4, 0.0)
+//    };
 
+    // student class constructors
     public Student(String name, String adminNo, String classes) {
         this.name = name;
         this.adminNo = adminNo;
         this.classes = classes;
+//        this.modules_taken = modules_taken; real data
+        this.modules_taken = new Module[] {
+            new Module("ST0405", "GabrielStudys", 4, 0.0), // mod_code, mod_name, cred_unit, marks
+            new Module("ST0504", "DarrenStudys", 3, 0.0),
+            new Module("ST0690", "KevinGayStudys", 3, 0.0),
+            new Module("ST0420", "RafaelHonestStudys", 4, 0.0)
+        }; // sample dataset. later change
     }
-
+    
+    public Student() {
+        this.name = "";
+        this.adminNo = "";
+        this.classes = "";
+    }
+    
+    // getter
     public String getName() {
         return name;
     }
@@ -31,13 +54,6 @@ public class Student {
         return classes;
     }
     
-    public Module[] modules_taken = {
-        new Module("ST0405", "GabrielStudys", 4, 0.0),
-        new Module("ST0504", "DarrenStudys", 3, 0.0),
-        new Module("ST0690", "KevinGayStudys", 3, 0.0),
-        new Module("ST0420", "RafaelHonestStudys", 4, 0.0)
-    };
-    
     public void printDetails() {
         System.out.println("Student Details:");
         System.out.println("Name: " + name);
@@ -47,6 +63,13 @@ public class Student {
     }  
     
     public double calculateGPA() {
+//        // config
+//        
+//        
+//        for (Module module : this.modules_taken) {
+//            
+//        }
+//        
         return 3.33;
     }
     
