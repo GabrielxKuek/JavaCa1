@@ -44,7 +44,5 @@ public class Student {
         System.out.println("Age: " + adminNo);
         System.out.println("Class: " + classes);
         System.out.println("Module taken: " + modules_taken);
-    }
-    
-    
+    }  
 }

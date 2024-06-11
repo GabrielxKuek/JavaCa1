@@ -38,6 +38,18 @@ public class StudentManagement {
     
     public void search_studentName() {
         
+        
+        String userInputForName = JOptionPane.showInputDialog(null,
+                "Enter the student name to search", "Search",
+                JOptionPane.QUESTION_MESSAGE);
+        
+        String message = "";
+        
+        for(Student student : students){
+            message += "Name: " + student.getName() + "\n";
+            message += "Admin No.: " + student.getAdminNo()+ "\n";
+            message += "Class: " + student.getClasses() + "\n";
+        }
     }
     
     public void search_studentClass() {
