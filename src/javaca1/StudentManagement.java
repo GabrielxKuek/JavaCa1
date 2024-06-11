@@ -37,16 +37,34 @@ public class StudentManagement {
     }
     
     public void search_studentName() {
+        // config
         String userInputForName = JOptionPane.showInputDialog(null,
                 "Enter the student name to search", "Search",
                 JOptionPane.QUESTION_MESSAGE);
         
         String message = "";
+        int iterations = 0;
         
+        // business logic
         for(Student student : students){
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
+            
+            message += "Modules Taken:\n";
+            
+            for (Module module : student.getModules_Taken()) {
+                iterations++;
+                message += String.format("%s. %s/%s/%s: %s\n", 
+                        iterations, 
+                        module.getModule_cd(), 
+                        module.getModule_cd(), 
+                        module.getCredit_units(), 
+                        module.getStudent_marks()
+                );
+                
+            }
+            
         }
     }
     
