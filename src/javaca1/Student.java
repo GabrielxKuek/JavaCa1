@@ -45,4 +45,9 @@ public class Student {
         System.out.println("Class: " + classes);
         System.out.println("Module taken: " + modules_taken);
     }  
+    
+    public double calculateGPA() {
+        return 3.33;
+    }
+    
 }
