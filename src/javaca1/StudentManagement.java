@@ -9,10 +9,31 @@ package javaca1;
  * @author Darren
  */
 public class StudentManagement {
-    Student student1 = new Student();
-    Student student2 = new Student();
-    Student student3 = new Student();
-    Student student4 = new Student();
+    public Student[] students = {
+        new Student("Rafael Thet Khine", "p6969420", "DIT03"),
+        new Student("Gabriel Macam", "p6942069", "DIT09"),
+        new Student("Kevin Kuek", "p996942", "DISM72"),
+        new Student("Darren Lin", "p253647", "DAAA99")
+    };
     
-    public static String[] studentArr = {student1, student2, student3, student4};
+    public void create_student() {
+        
+    }
+    
+    public void display_student() {
+        
+    }
+    
+    public void search_student() {
+        
+    }
+    
+    // do last, with error handling
+    public void search_module() {
+        
+    }
+    
+    public void print_statistics() {
+        
+    }
 }

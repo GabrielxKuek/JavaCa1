@@ -9,5 +9,9 @@ package javaca1;
  * @author Darren
  */
 public class StudentUser {
-    
+    public static void main(String[] args) {
+        // JOptionPane Menu
+        
+        // call student management
+    }
 }
