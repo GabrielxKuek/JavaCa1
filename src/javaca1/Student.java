@@ -54,6 +54,10 @@ public class Student {
         return classes;
     }
     
+    public String getModules_Taken() {
+        return modules_taken;
+    }
+    
     public void printDetails() {
         System.out.println("Student Details:");
         System.out.println("Name: " + name);
