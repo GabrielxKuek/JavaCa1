@@ -36,7 +36,11 @@ public class StudentManagement {
                 JOptionPane.INFORMATION_MESSAGE);
     }
     
-    public void search_student() {
+    public void search_studentName() {
+        
+    }
+    
+    public void search_studentClass() {
         
     }
     
