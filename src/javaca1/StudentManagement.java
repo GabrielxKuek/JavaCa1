@@ -37,8 +37,6 @@ public class StudentManagement {
     }
     
     public void search_studentName() {
-        
-        
         String userInputForName = JOptionPane.showInputDialog(null,
                 "Enter the student name to search", "Search",
                 JOptionPane.QUESTION_MESSAGE);
@@ -52,8 +50,32 @@ public class StudentManagement {
         }
     }
     
-    public void search_studentClass() {
+    public void search_studentClass(String classInput) {
+        // create temporary arrays to store values
+        int qty = 0;
+        double totalGPA = 0.0;
         
+        // updates temporary arrays
+        for (Student student : students) {
+            if (student.getClasses() == classInput) {
+                qty += 1;
+                totalGPA += student.calculateGPA();
+            }
+        }      
+        
+        // Dialog Box Config
+        double averageGPA = qty > 0 ? totalGPA / qty : 0;
+        
+        String message = String.format(
+                "Number of student(s) in %s: %d\nAverage GPA: %.2f",
+                classInput, qty, averageGPA
+            );
+        
+        JOptionPane.showMessageDialog(null,
+                message,
+                "All Student Report",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
     
     // do last, with error handling
