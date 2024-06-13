@@ -13,8 +13,8 @@ public class StudentManagement {
     public Student[] students = {
         new Student("Rafael Thet Khine", "p6969420", "DIT03", new Module[0]),
         new Student("Gabriel Macam", "p6942069", "DIT09", new Module[0]),
-        new Student("Kevin Kuek", "p996942", "DISM72", new Module[0]),
-        new Student("Darren Lin", "p253647", "DAAA99", new Module[0])
+        new Student("Kevin Kuek", "p996942", "DIT03", new Module[0]),
+        new Student("Darren Lin", "p253647", "DAAA99", new Module[] {new Module("Darren", "Hong Chee", 4, 79)})
     };
     
     // another poop
@@ -74,7 +74,7 @@ public class StudentManagement {
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
-            message += "Modules Taken:\n";
+            message += "Modules Taken:\n\n";
             
             for (Module module : student.getModules_Taken()) {
                 iterations++;
@@ -85,7 +85,6 @@ public class StudentManagement {
                         module.getCredit_units(), 
                         module.getStudent_marks()
                 );
-                
             }
         }
         
@@ -104,9 +103,11 @@ public class StudentManagement {
         
         String message = "";
         int iterations = 0;
+        boolean studentFound = false;
         
         // business logic
         for(Student student : students){
+            if(student.getName().equals(userInputForName)){
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
@@ -124,8 +125,22 @@ public class StudentManagement {
                 );
                 
             }
+            studentFound = true;
+            break;
+            
+          }   
             
         }
+        
+        if(!studentFound){
+            message = "Cannot find the student " + userInputForName;
+        }
+        
+            JOptionPane.showMessageDialog(null,
+            message,
+            "Search Results",
+            JOptionPane.INFORMATION_MESSAGE
+        );
     }
     
     public void search_studentClass(String classInput) {
@@ -135,7 +150,7 @@ public class StudentManagement {
         
         // updates temporary arrays
         for (Student student : students) {
-            if (student.getClasses() == classInput) {
+            if (student.getClasses().equals(classInput)) {
                 qty += 1;
                 totalGPA += student.calculateGPA();
             }
@@ -151,7 +166,7 @@ public class StudentManagement {
         
         JOptionPane.showMessageDialog(null,
                 message,
-                "All Student Report",
+                "Class Summary",
                 JOptionPane.INFORMATION_MESSAGE
         );
     }

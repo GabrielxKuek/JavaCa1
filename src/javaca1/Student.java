@@ -78,13 +78,13 @@ public class Student {
         }; // sample dataset. later change
     }
     
-    public void printDetails() {
-        System.out.println("Student Details:");
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + adminNo);
-        System.out.println("Class: " + classes);
-        System.out.println("Module taken: " + modules_taken);
-    }  
+//    public void printDetails() {
+//        System.out.println("Student Details:");
+//        System.out.println("Name: " + name);
+//        System.out.println("Age: " + adminNo);
+//        System.out.println("Class: " + classes);
+//        System.out.println("Module taken: " + modules_taken);
+//    }  
     
     public double calculateGPA() {
         // config
