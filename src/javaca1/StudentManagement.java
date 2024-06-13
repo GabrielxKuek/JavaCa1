@@ -11,10 +11,13 @@ import javax.swing.JOptionPane;
  */
 public class StudentManagement {
     public Student[] students = {
-        new Student("Rafael Thet Khine", "p6969420", "DIT03", new Module[0]),
-        new Student("Gabriel Macam", "p6942069", "DIT09", new Module[0]),
-        new Student("Kevin Kuek", "p996942", "DIT03", new Module[0]),
-        new Student("Darren Lin", "p253647", "DAAA99", new Module[] {new Module("Darren", "Hong Chee", 4, 79)})
+        new Student("Rafael Thet Khine", "p6969420", "DIT03", new Module[] {new Module("ST0405", "GabrielStudys", 4, 79)}),
+        new Student("Gabriel Macam", "p6942069", "DIT09", new Module[] {new Module("ST0504", "DarrenStudys", 3, 80.5)}),
+        new Student("Kevin Kuek", "p996942", "DIT03", new Module[] {new Module("ST0690", "KevinGayStudys", 3, 60)}),
+        new Student("Darren Lin", "p253647", "DAAA99", new Module[] {
+            new Module("ST0420", "RafaelHonestStudys", 4, 79.4),
+            new Module("ST0690", "KevinGayStudys", 3, 60)
+        })
     };
     
     // another poop
@@ -65,27 +68,30 @@ public class StudentManagement {
     }
     
     public void display_student() {
-        int iterations = 0;
+        int studentCount = 0;
         String message = "";
         
         for(Student student : students){
-            iterations++;
-            message += String.format("Student %s:\n\n", iterations);
+            studentCount++;
+            int moduleCount = 0;
+            
+            message += String.format("Student %s:\n\n", studentCount);
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
             message += "Modules Taken:\n\n";
             
             for (Module module : student.getModules_Taken()) {
-                iterations++;
+                moduleCount++;
                 message += String.format("%s. %s/%s/%s: %s\n", 
-                        iterations, 
+                        moduleCount, 
                         module.getModule_cd(), 
                         module.getModule_name(), 
                         module.getCredit_units(), 
                         module.getStudent_marks()
                 );
             }
+            message += "\n";
         }
         
         JOptionPane.showMessageDialog(null,
@@ -107,7 +113,7 @@ public class StudentManagement {
         
         // business logic
         for(Student student : students){
-            if(student.getName().equals(userInputForName)){
+            if(student.getName().equalsIgnoreCase(userInputForName.trim())){
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
@@ -133,7 +139,12 @@ public class StudentManagement {
         }
         
         if(!studentFound){
-            message = "Cannot find the student " + userInputForName;
+            JOptionPane.showMessageDialog(null,
+                    "Cannot find the student \"" + userInputForName + "\"!!",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
         }
         
             JOptionPane.showMessageDialog(null,
@@ -150,7 +161,7 @@ public class StudentManagement {
         
         // updates temporary arrays
         for (Student student : students) {
-            if (student.getClasses().equals(classInput)) {
+            if (student.getClasses().equalsIgnoreCase(classInput.trim())) {
                 qty += 1;
                 totalGPA += student.calculateGPA();
             }
@@ -169,14 +180,5 @@ public class StudentManagement {
                 "Class Summary",
                 JOptionPane.INFORMATION_MESSAGE
         );
-    }
-    
-    // do last, with error handling
-    public void search_module() {
-        
-    }
-    
-    public void print_statistics() {
-        
     }
 }
