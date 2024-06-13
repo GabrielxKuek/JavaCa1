@@ -26,13 +26,7 @@ public class Student {
         this.name = name;
         this.adminNo = adminNo;
         this.classes = classes;
-//        this.modules_taken = modules_taken; real data
-        this.modules_taken = new Module[] {
-            new Module("ST0405", "GabrielStudys", 4, 0.0), // mod_code, mod_name, cred_unit, marks
-            new Module("ST0504", "DarrenStudys", 3, 0.0),
-            new Module("ST0690", "KevinGayStudys", 3, 0.0),
-            new Module("ST0420", "RafaelHonestStudys", 4, 0.0)
-        }; // sample dataset. later change
+        this.modules_taken = new Module[0];
     }
     
     public Student() {
@@ -56,6 +50,31 @@ public class Student {
     
     public Module[] getModules_Taken() {
         return modules_taken;
+    }
+    
+    //setter for modules taken
+    public void setModules_taken(Module[] modules_taken) {
+        this.modules_taken = modules_taken;
+    }
+    
+    public void addModule(Module newModule) {
+        Module[] tempArr = new Module[modules_taken.length+1];
+        for(int i = 0; i < modules_taken.length; i++){
+            tempArr[i] = modules_taken[i];
+        }
+        
+        tempArr[modules_taken.length] = newModule;
+        
+        this.modules_taken = tempArr;
+    }
+    
+    public void create_modules() {
+            this.modules_taken = new Module[] {
+            new Module("ST0405", "GabrielStudys", 4, 0.0), // mod_code, mod_name, cred_unit, marks
+            new Module("ST0504", "DarrenStudys", 3, 0.0),
+            new Module("ST0690", "KevinGayStudys", 3, 0.0),
+            new Module("ST0420", "RafaelHonestStudys", 4, 0.0)
+        }; // sample dataset. later change
     }
     
     public void printDetails() {
