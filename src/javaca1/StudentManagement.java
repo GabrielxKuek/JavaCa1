@@ -36,8 +36,18 @@ public class StudentManagement {
     
     // poop use case method poop
     
-    public void create_student() {
+    public void create_student(String name, String adminNo, String classes) {
+        Student newStudent = new Student(name, adminNo, classes);
         
+        Student[] updatedStudents = new Student[students.length+1];
+        
+        for(int i = 0; i < students.length; i++){
+            updatedStudents[i] = students[i];
+        }
+        
+        updatedStudents[students.length] = newStudent;
+        
+        students = updatedStudents;
     }
     
     public void delete_student(String adminNumber) {
