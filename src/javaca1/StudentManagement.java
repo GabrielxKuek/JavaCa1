@@ -20,23 +20,6 @@ public class StudentManagement {
         })
     };
     
-    // another poop
-    public static Student[] removeElementByIndex(Student[] array, int indexToRemove) {
-        if (array == null || indexToRemove < 0 || indexToRemove >= array.length) {
-            return array;
-        }
-        
-        Student[] newArray = new Student[array.length - 1];
-        
-        for (int i = 0, j = 0; i < array.length; i++) {
-            if (i != indexToRemove) {
-                newArray[j++] = array[i];
-            }
-        }
-        
-        return newArray;
-    }
-    
     // poop use case method poop
     
     public void create_student(String name, String adminNo, String classes, Module[] modules) {
@@ -64,7 +47,7 @@ public class StudentManagement {
             iterations++;
         }
         
-        students = removeElementByIndex(students, iterations);
+        students = arrayUtils.removeElementByIndex(students, iterations);
     }
     
     public void display_student() {
