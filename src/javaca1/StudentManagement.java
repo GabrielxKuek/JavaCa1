@@ -74,7 +74,7 @@ public class StudentManagement {
                         module.getStudent_marks()
                 );
             }
-            message += "\n";
+            message += "-----------------\n";
         }
         
         JOptionPane.showMessageDialog(null,
@@ -141,15 +141,24 @@ public class StudentManagement {
         // create temporary arrays to store values
         int qty = 0;
         double totalGPA = 0.0;
+        boolean classFound = false;
         
         // updates temporary arrays
         for (Student student : students) {
             if (student.getClasses().equalsIgnoreCase(classInput.trim())) {
                 qty += 1;
                 totalGPA += student.calculateGPA();
+                classFound = true;
             }
         }      
         
+        if(!classFound){
+            JOptionPane.showMessageDialog(null,
+                    "No students found in class " + classInput + "!",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         // Dialog Box Config
         double averageGPA = qty > 0 ? totalGPA / qty : 0;
         

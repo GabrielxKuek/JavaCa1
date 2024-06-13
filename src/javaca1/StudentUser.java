@@ -15,14 +15,28 @@ public class StudentUser {
         while(true){
         // JOptionPane Menu
         StudentEnquiryView view = new StudentEnquiryView();
-        String userInputString = view.showMenu("Enter your option: \n\n"
-                + "1. Display All Students: \n"
-                + "2.Search student by class\n"
-                + "3. Search student by name\n"
-                + "4. Quit");
+        String userInputString = view.showMenu("""
+                                               Enter your option: 
+                                               
+                                               1. Display All Students: 
+                                               2.Search student by class
+                                               3. Search student by name
+                                               4. Quit""");
         
-        int userInput = Integer.parseInt(userInputString.trim());
-                
+        
+        int userInput;
+        
+        try {
+            userInput = Integer.parseInt(userInputString.trim());
+        } catch (NumberFormatException e) {
+            // Handle non-integer input
+            JOptionPane.showMessageDialog(null,
+                "Please enter a valid integer option",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            continue; // Restart the loop to prompt for input again
+        }
+         
         // call student management
         StudentManagement options = new StudentManagement();
         
@@ -36,7 +50,7 @@ public class StudentUser {
                 "Enter the class name to search",
                 "Search",
                 JOptionPane.QUESTION_MESSAGE
-                );
+                );                
                 options.search_studentClass(classInput);
                 break;
             case 3:
