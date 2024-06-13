@@ -17,8 +17,41 @@ public class StudentManagement {
         new Student("Darren Lin", "p253647", "DAAA99")
     };
     
+    // another poop
+    public static Student[] removeElementByIndex(Student[] array, int indexToRemove) {
+        if (array == null || indexToRemove < 0 || indexToRemove >= array.length) {
+            return array;
+        }
+        
+        Student[] newArray = new Student[array.length - 1];
+        
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (i != indexToRemove) {
+                newArray[j++] = array[i];
+            }
+        }
+        
+        return newArray;
+    }
+    
+    // poop use case method poop
+    
     public void create_student() {
         
+    }
+    
+    public void delete_student(String adminNumber) {
+        int iterations = 0;
+        
+        for (Student student : students) {
+            if (student.getAdminNo().equals(adminNumber)) {
+                break;
+            }
+            
+            iterations++;
+        }
+        
+        students = removeElementByIndex(students, iterations);
     }
     
     public void display_student() {
