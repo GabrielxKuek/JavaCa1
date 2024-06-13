@@ -77,7 +77,7 @@ public class StudentManagement {
                         module.getModule_cd(), 
                         module.getModule_cd(), 
                         module.getCredit_units(), 
-                        module.getStudent_marks()
+                        MarksGrade.getGrade(module.getStudent_marks())
                 );
                 
             }
