@@ -86,14 +86,23 @@ public class Student {
     }  
     
     public double calculateGPA() {
-//        // config
-//        
-//        
-//        for (Module module : this.modules_taken) {
-//            
-//        }
-//        
-        return 3.33;
+        // config
+        double totalGradePoints = 0.0;
+        double totalCreditUnits = 0;
+        
+        for (Module module : this.modules_taken) {
+            double gradePoint = MarksGrade.getGradePoint(module.getStudent_marks());
+            int creditUnits = module.getCredit_units();
+            
+            totalGradePoints += creditUnits*gradePoint;
+            totalCreditUnits += creditUnits;
+        }
+        
+        if(totalCreditUnits > 0){
+            return totalGradePoints / totalCreditUnits;
+        }else{
+            return 0.0;
+        }
     }
     
 }
