@@ -6,13 +6,8 @@ package javaca1;
 
 /**
  *
- * @author Darren
+ * @author Gabriel Kuek
  */
-public class StudentUser {
-    public static void main(String[] args) {
-        // JOptionPane Menu
-                
-                
-        // call student management
-    }
+public class StudentEnquiryView {
+    
 }
