@@ -108,7 +108,7 @@ public class StudentManagement {
                 message += String.format("%s. %s/%s/%s: %s\n", 
                         iterations, 
                         module.getModule_cd(), 
-                        module.getModule_cd(), 
+                        module.getModule_name(), 
                         module.getCredit_units(), 
                         MarksGrade.getGrade(module.getStudent_marks())
                 );
