@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
  */
 public class StudentManagement {
     public Student[] students = {
-        new Student("Rafael Thet Khine", "p6969420", "DIT03"),
-        new Student("Gabriel Macam", "p6942069", "DIT09"),
-        new Student("Kevin Kuek", "p996942", "DISM72"),
-        new Student("Darren Lin", "p253647", "DAAA99")
+        new Student("Rafael Thet Khine", "p6969420", "DIT03", new Module[0]),
+        new Student("Gabriel Macam", "p6942069", "DIT09", new Module[0]),
+        new Student("Kevin Kuek", "p996942", "DISM72", new Module[0]),
+        new Student("Darren Lin", "p253647", "DAAA99", new Module[0])
     };
     
     // another poop
@@ -36,14 +36,14 @@ public class StudentManagement {
     
     // poop use case method poop
     
-    public void create_student(String name, String adminNo, String classes) {
-        Student newStudent = new Student(name, adminNo, classes);
-        
+    public void create_student(String name, String adminNo, String classes, Module[] modules) {
+        Student newStudent = new Student(name, adminNo, classes, modules);
         Student[] updatedStudents = new Student[students.length+1];
         
+        // copy original array into temporary array
         for(int i = 0; i < students.length; i++){
             updatedStudents[i] = students[i];
-        }
+        }        
         
         updatedStudents[students.length] = newStudent;
         

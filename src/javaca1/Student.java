@@ -22,17 +22,18 @@ public class Student {
 //    };
 
     // student class constructors
-    public Student(String name, String adminNo, String classes) {
+    public Student(String name, String adminNo, String classes, Module[] modules) {
         this.name = name;
         this.adminNo = adminNo;
         this.classes = classes;
-        this.modules_taken = new Module[0];
+        this.modules_taken = modules;
     }
     
     public Student() {
         this.name = "";
         this.adminNo = "";
         this.classes = "";
+        this.modules_taken = new Module[0];
     }
     
     // getter
