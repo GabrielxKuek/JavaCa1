@@ -39,7 +39,7 @@ public class StudentAdminView {
     }
     
     // add new student
-    public void addNewStudent() { // todo: add error hadnling
+    public static void addNewStudent() { // todo: add error hadnling
         String name = "";
         String adminNumber = "";
         String classes = "";
@@ -80,20 +80,20 @@ public class StudentAdminView {
             double moduleMarks = 0.0;
             
             moduleCode = JOptionPane.showInputDialog(null,
-                "Enter Module Code for module" + i,
+                "Enter Module Code for module" + i + ":",
                 programName,
                 JOptionPane.QUESTION_MESSAGE
             );
             
             moduleName = JOptionPane.showInputDialog(null,
-                "Enter Module Name for module" + i,
+                "Enter Module Name for module" + i + ":",
                 programName,
                 JOptionPane.QUESTION_MESSAGE
             );
             
             creditUnit = Integer.parseInt(
                 JOptionPane.showInputDialog(null,
-                    "Enter Credit Unit for module" + i,
+                    "Enter Credit Unit for module" + i + ":",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
                 )
@@ -101,7 +101,7 @@ public class StudentAdminView {
             
             moduleMarks = Float.parseFloat(
                 JOptionPane.showInputDialog(null,
-                    "Enter Module Marks for module" + i,
+                    "Enter Module Marks for module" + i + ":",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
                 )
@@ -121,20 +121,146 @@ public class StudentAdminView {
             
         }
         
+        StudentManagement.create_student(name, adminNumber, classes, modules_taken);
+
         JOptionPane.showMessageDialog(null, "Success!", programName, JOptionPane.INFORMATION_MESSAGE);
     }
     
     // delete student
-    public void deleteStudent() {
+    public static void deleteStudent() {
+        // config
+        String adminNo = "";
+        int iterations = 0;
+        
+        adminNo = JOptionPane.showInputDialog(null,
+            "Enter admin number of student:",
+            programName,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        for (Student student : StudentManagement.students) {
+            if (student.getAdminNo().equals(adminNo)) {
+                StudentManagement.students = arrayUtils.removeStudentElementByIndex(StudentManagement.students, iterations);
+                
+                JOptionPane.showMessageDialog(null,
+                        "Student deleted!",
+                        programName,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                
+                break;
+                
+            } else if (iterations == StudentManagement.students.length - 1) {
+                JOptionPane.showMessageDialog(null,
+                        "Student not found!",
+                        programName,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                // means end of loop and will automatically break
+                
+            }
+            
+            iterations++;
+            
+        }
+        
         
     }
     
     // add new module for student
-    public void addNewModule() {
+    public static void addNewModule() {
+        // config
+        boolean selection;
+        String adminNo = "";
+        int iterations = 0;
         
+        String moduleCode = "";
+        String moduleName = "";
+        int creditUnit = 0;
+        double moduleMarks = 0.0;
+        
+        adminNo = JOptionPane.showInputDialog(null,
+            "Enter admin number of student:",
+            programName,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        // find student's array index
+        for (Student student : StudentManagement.students) {
+            if (student.getAdminNo().equals(adminNo)) {
+                break;
+            }
+            
+            iterations++;
+        }
+        
+        // code for adding module
+        do {
+            moduleCode = JOptionPane.showInputDialog(null,
+                "Enter Module Code for module:",
+                programName,
+                JOptionPane.QUESTION_MESSAGE
+            );
+
+            moduleName = JOptionPane.showInputDialog(null,
+                "Enter Module Name for module:",
+                programName,
+                JOptionPane.QUESTION_MESSAGE
+            );
+
+            creditUnit = Integer.parseInt(
+                JOptionPane.showInputDialog(null,
+                    "Enter Credit Unit for module:",
+                    programName,
+                    JOptionPane.QUESTION_MESSAGE
+                )
+            );
+
+            moduleMarks = Float.parseFloat(
+                JOptionPane.showInputDialog(null,
+                    "Enter Module Marks for module:",
+                    programName,
+                    JOptionPane.QUESTION_MESSAGE
+                )
+            );
+
+            // create module with given information
+            Module tempModule = new Module(moduleCode, moduleName, creditUnit, moduleMarks);
+
+
+            StudentManagement.students[iterations].setModules_taken(
+                    arrayUtils.appendModuleElement(
+                            StudentManagement.students[iterations].getModules_Taken(), 
+                            tempModule
+                    )
+            );
+            
+            // checker for loop repetition
+            selection = 
+                JOptionPane.YES_OPTION ==
+                JOptionPane.showConfirmDialog(null, 
+                    "Are there any more modules to add?",
+                    programName,
+                    JOptionPane.YES_NO_OPTION
+                );
+        } while (selection);
     }
     
     public static void main(String[] args) {
-        showMenu();
+        addNewModule();
+        
+        for (Student student : StudentManagement.students) {
+            System.out.println(student.getName());
+            System.out.println(student.getAdminNo());
+            System.out.println(student.getClasses());
+            System.out.println("----modules taken----");
+            for (Module module : student.getModules_Taken()) {
+                System.out.println(module.getModule_cd());
+                System.out.println(module.getModule_name());
+                System.out.println(module.getCredit_units());
+                System.out.println(module.getStudent_marks());
+            }
+            System.out.println("---------------------\n");
+        }
     }
 }

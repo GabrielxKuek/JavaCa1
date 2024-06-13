@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author Darren
  */
 public class StudentManagement {
-    public Student[] students = {
+    public static Student[] students = {
         new Student("Rafael Thet Khine", "p6969420", "DIT03", new Module[] {new Module("ST0405", "GabrielStudys", 4, 79)}),
         new Student("Gabriel Macam", "p6942069", "DIT09", new Module[] {new Module("ST0504", "DarrenStudys", 3, 80.5)}),
         new Student("Kevin Kuek", "p996942", "DIT03", new Module[] {new Module("ST0690", "KevinGayStudys", 3, 60)}),
@@ -22,7 +22,7 @@ public class StudentManagement {
     
     // poop use case method poop
     
-    public void create_student(String name, String adminNo, String classes, Module[] modules) {
+    public static void create_student(String name, String adminNo, String classes, Module[] modules) {
         Student newStudent = new Student(name, adminNo, classes, modules);
         Student[] updatedStudents = new Student[students.length+1];
         
@@ -36,7 +36,7 @@ public class StudentManagement {
         students = updatedStudents;
     }
     
-    public void delete_student(String adminNumber) {
+    public static void delete_student(String adminNumber) {
         int iterations = 0;
         
         for (Student student : students) {
@@ -47,10 +47,10 @@ public class StudentManagement {
             iterations++;
         }
         
-        students = arrayUtils.removeElementByIndex(students, iterations);
+        students = arrayUtils.removeStudentElementByIndex(students, iterations);
     }
     
-    public void display_student() {
+    public static void display_student() {
         int studentCount = 0;
         String message = "";
         
@@ -84,7 +84,7 @@ public class StudentManagement {
             );
     }
     
-    public void search_studentName() {
+    public static void search_studentName() {
         // config
         String userInputForName = JOptionPane.showInputDialog(null,
                 "Enter the student name to search", "Search",
@@ -137,7 +137,7 @@ public class StudentManagement {
         );
     }
     
-    public void search_studentClass(String classInput) {
+    public static void search_studentClass(String classInput) {
         // create temporary arrays to store values
         int qty = 0;
         double totalGPA = 0.0;
