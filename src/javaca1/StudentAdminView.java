@@ -13,117 +13,158 @@ package javaca1;
 import javax.swing.JOptionPane;
 
 public class StudentAdminView {
+    // config
     private static String userSelection = "";
     private static String programName = "Student Admin System";
     
+    private static boolean repeatMenu = true;
+    private static boolean repeatOption = false;
+    
     // display menu
     public static void showMenu() {
-        JOptionPane.showInputDialog(null,
-                """
-                    Enter your option:
+        do {
+            userSelection = JOptionPane.showInputDialog(null,
+                    """
+                        Enter your option:
 
-                    1. Add new student
-                    2. Delete student
-                    3. Add new module for student
-                    4. Quit
-                """,
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-        );
-        
-        switch (userSelection) {
-            case "1":
-                
-                
-        }
+                        1. Add new student
+                        2. Delete student
+                        3. Add new module for student
+                        4. Quit
+                    """,
+                    programName,
+                    JOptionPane.QUESTION_MESSAGE
+            ).trim();
+
+            switch (userSelection) {
+                case "1":
+                    do {
+                        addNewStudent();
+                    } while (repeatOption);
+                    
+                    break;
+
+                case "2":
+                    do {
+                        deleteStudent();
+                    } while (repeatOption);
+                    
+                    break;
+
+                case "3":
+                    do {
+                        addNewModule();
+                    } while (repeatOption);
+                    
+                    break;
+                    
+                case "4":
+                    repeatMenu = false;
+                    
+                    break;
+
+                default:
+                    errorMessage();
+                    
+            }
+        } while (repeatMenu);
     }
     
     // add new student
     public static void addNewStudent() { // todo: add error hadnling
+        // config
         String name = "";
         String adminNumber = "";
         String classes = "";
         Module[] modules_taken = new Module[0];
         int noOfModulesTaken = 0;
+        
+        try {
+            name = JOptionPane.showInputDialog(null,
+                    "Enter name:",
+                    programName,
+                    JOptionPane.QUESTION_MESSAGE
+                ).trim();
 
-        name = JOptionPane.showInputDialog(null,
-                "Enter name:",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
-        
-        adminNumber = JOptionPane.showInputDialog(null,
-                "Enter Admin:",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
-        
-        classes = JOptionPane.showInputDialog(null,
-                "Enter Class:",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
-        
-        noOfModulesTaken = Integer.parseInt(
-                JOptionPane.showInputDialog(null,
-                    "Enter number of Modules Taken:",
+            adminNumber = JOptionPane.showInputDialog(null,
+                    "Enter Admin:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                )
-            );
-        
-        for (int i = 1; i <= noOfModulesTaken; i++) {
-            // in each "add module to student" iteration
-            String moduleCode = "";
-            String moduleName = "";
-            int creditUnit = 0;
-            double moduleMarks = 0.0;
-            
-            moduleCode = JOptionPane.showInputDialog(null,
-                "Enter Module Code for module" + i + ":",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
-            
-            moduleName = JOptionPane.showInputDialog(null,
-                "Enter Module Name for module" + i + ":",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
-            
-            creditUnit = Integer.parseInt(
-                JOptionPane.showInputDialog(null,
-                    "Enter Credit Unit for module" + i + ":",
+                ).trim();
+
+            classes = JOptionPane.showInputDialog(null,
+                    "Enter Class:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                )
-            );
-            
-            moduleMarks = Float.parseFloat(
-                JOptionPane.showInputDialog(null,
-                    "Enter Module Marks for module" + i + ":",
+                ).trim();
+
+            noOfModulesTaken = Integer.parseInt(
+                    JOptionPane.showInputDialog(null,
+                        "Enter number of Modules Taken:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim()
+                );
+
+            for (int i = 1; i <= noOfModulesTaken; i++) {
+                // in each "add module to student" iteration
+                String moduleCode = "";
+                String moduleName = "";
+                int creditUnit = 0;
+                double moduleMarks = 0.0;
+
+                moduleCode = JOptionPane.showInputDialog(null,
+                    "Enter Module Code for module" + i + ":",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                )
-            );
-            
-            // create module with given information
-            Module tempModule = new Module(moduleCode, moduleName, creditUnit, moduleMarks);
-            
-            // add into array of taken modules
-            Module[] newModules_taken = new Module[modules_taken.length + 1];
-            
-            for (int j = 0; j < modules_taken.length; j++) {
-                newModules_taken[j] = modules_taken[j];
+                ).trim();
+
+                moduleName = JOptionPane.showInputDialog(null,
+                    "Enter Module Name for module" + i + ":",
+                    programName,
+                    JOptionPane.QUESTION_MESSAGE
+                ).trim();
+
+                creditUnit = Integer.parseInt(
+                    JOptionPane.showInputDialog(null,
+                        "Enter Credit Unit for module" + i + ":",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim()
+                );
+
+                moduleMarks = Float.parseFloat(
+                    JOptionPane.showInputDialog(null,
+                        "Enter Module Marks for module" + i + ":",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim()
+                );
+
+                // create module with given information
+                Module tempModule = new Module(moduleCode, moduleName, creditUnit, moduleMarks);
+
+                // add into array of taken modules
+                Module[] newModules_taken = new Module[modules_taken.length + 1];
+
+                for (int j = 0; j < modules_taken.length; j++) {
+                    newModules_taken[j] = modules_taken[j];
+                }
+
+                newModules_taken[modules_taken.length] = tempModule;
             }
             
-            newModules_taken[modules_taken.length] = tempModule;
+            StudentManagement.create_student(name, adminNumber, classes, modules_taken);
+
+            JOptionPane.showMessageDialog(null, "Success!", programName, JOptionPane.INFORMATION_MESSAGE);
+            
+            repeatOption = false;
+            
+        } catch (Exception e) {
+            errorMessage();
+            repeatOption = true;
             
         }
-        
-        StudentManagement.create_student(name, adminNumber, classes, modules_taken);
-
-        JOptionPane.showMessageDialog(null, "Success!", programName, JOptionPane.INFORMATION_MESSAGE);
     }
     
     // delete student
@@ -132,36 +173,45 @@ public class StudentAdminView {
         String adminNo = "";
         int iterations = 0;
         
-        adminNo = JOptionPane.showInputDialog(null,
-            "Enter admin number of student:",
-            programName,
-            JOptionPane.QUESTION_MESSAGE
-        );
-        
-        for (Student student : StudentManagement.students) {
-            if (student.getAdminNo().equals(adminNo)) {
-                StudentManagement.students = arrayUtils.removeStudentElementByIndex(StudentManagement.students, iterations);
-                
-                JOptionPane.showMessageDialog(null,
-                        "Student deleted!",
-                        programName,
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                
-                break;
-                
-            } else if (iterations == StudentManagement.students.length - 1) {
-                JOptionPane.showMessageDialog(null,
-                        "Student not found!",
-                        programName,
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                // means end of loop and will automatically break
-                
+        try {
+            adminNo = JOptionPane.showInputDialog(null,
+                "Enter admin number of student:",
+                programName,
+                JOptionPane.QUESTION_MESSAGE
+            ).trim();
+
+            for (Student student : StudentManagement.students) {
+                if (student.getAdminNo().equals(adminNo)) {
+                    StudentManagement.students = arrayUtils.removeStudentElementByIndex(StudentManagement.students, iterations);
+
+                    JOptionPane.showMessageDialog(null,
+                            "Student deleted!",
+                            programName,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    
+                    repeatOption = false;
+
+                    break;
+
+                } else if (iterations == StudentManagement.students.length - 1) {
+                    JOptionPane.showMessageDialog(null,
+                            "Student not found!",
+                            programName,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    
+                    repeatOption = true;
+                    // means end of loop and will automatically break
+
+                }
+
+                iterations++;
             }
             
-            iterations++;
-            
+        } catch (Exception e) {
+            errorMessage();
+            repeatOption = true;
         }
         
         
@@ -179,75 +229,92 @@ public class StudentAdminView {
         int creditUnit = 0;
         double moduleMarks = 0.0;
         
-        adminNo = JOptionPane.showInputDialog(null,
-            "Enter admin number of student:",
-            programName,
-            JOptionPane.QUESTION_MESSAGE
-        );
-        
-        // find student's array index
-        for (Student student : StudentManagement.students) {
-            if (student.getAdminNo().equals(adminNo)) {
-                break;
+        try {
+            adminNo = JOptionPane.showInputDialog(null,
+                "Enter admin number of student:",
+                programName,
+                JOptionPane.QUESTION_MESSAGE
+            ).trim();
+
+            // find student's array index
+            for (Student student : StudentManagement.students) {
+                if (student.getAdminNo().equals(adminNo)) {
+                    break;
+                }
+
+                iterations++;
             }
-            
-            iterations++;
-        }
-        
-        // code for adding module
-        do {
-            moduleCode = JOptionPane.showInputDialog(null,
-                "Enter Module Code for module:",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
 
-            moduleName = JOptionPane.showInputDialog(null,
-                "Enter Module Name for module:",
-                programName,
-                JOptionPane.QUESTION_MESSAGE
-            );
-
-            creditUnit = Integer.parseInt(
-                JOptionPane.showInputDialog(null,
-                    "Enter Credit Unit for module:",
+            // code for adding module
+            do {
+                moduleCode = JOptionPane.showInputDialog(null,
+                    "Enter Module Code for module:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                )
-            );
+                ).trim();
 
-            moduleMarks = Float.parseFloat(
-                JOptionPane.showInputDialog(null,
-                    "Enter Module Marks for module:",
+                moduleName = JOptionPane.showInputDialog(null,
+                    "Enter Module Name for module:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                )
-            );
+                ).trim();
 
-            // create module with given information
-            Module tempModule = new Module(moduleCode, moduleName, creditUnit, moduleMarks);
-
-
-            StudentManagement.students[iterations].setModules_taken(
-                    arrayUtils.appendModuleElement(
-                            StudentManagement.students[iterations].getModules_Taken(), 
-                            tempModule
-                    )
-            );
-            
-            // checker for loop repetition
-            selection = 
-                JOptionPane.YES_OPTION ==
-                JOptionPane.showConfirmDialog(null, 
-                    "Are there any more modules to add?",
-                    programName,
-                    JOptionPane.YES_NO_OPTION
+                creditUnit = Integer.parseInt(
+                    JOptionPane.showInputDialog(null,
+                        "Enter Credit Unit for module:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim()
                 );
-        } while (selection);
+
+                moduleMarks = Float.parseFloat(
+                    JOptionPane.showInputDialog(null,
+                        "Enter Module Marks for module:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim()
+                );
+
+                // create module with given information
+                Module tempModule = new Module(moduleCode, moduleName, creditUnit, moduleMarks);
+
+
+                StudentManagement.students[iterations].setModules_taken(
+                        arrayUtils.appendModuleElement(
+                                StudentManagement.students[iterations].getModules_Taken(), 
+                                tempModule
+                        )
+                );
+
+                // checker for loop repetition
+                selection = 
+                    JOptionPane.YES_OPTION ==
+                    JOptionPane.showConfirmDialog(null, 
+                        "Are there any more modules to add?",
+                        programName,
+                        JOptionPane.YES_NO_OPTION
+                    );
+            } while (selection);
+            
+            repeatOption = false;
+            
+        } catch (Exception e) {
+            errorMessage();
+            
+            repeatOption = true;
+        }
+    }
+    
+    public static void errorMessage() {
+        JOptionPane.showMessageDialog(null,
+                "Invalid input! Please try again.",
+                programName,
+                JOptionPane.ERROR_MESSAGE
+        );
     }
     
     public static void main(String[] args) {
-        addNewModule();
+        showMenu();
         
         for (Student student : StudentManagement.students) {
             System.out.println(student.getName());
