@@ -7,6 +7,10 @@ package javaca1;
 /**
  *
  * @author Gabriel Kuek
+ * 
+ * to-do: 
+ * - pressing "Cancel" on the prompts leads to errors
+ * 
  */
 
 // import 
@@ -313,6 +317,7 @@ public class StudentAdminView {
         );
     }
     
+    // temporary - just for debugging and testing
     public static void main(String[] args) {
         showMenu();
         
