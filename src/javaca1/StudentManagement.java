@@ -62,7 +62,7 @@ public class StudentManagement {
             message += "Name: " + student.getName() + "\n";
             message += "Admin No.: " + student.getAdminNo()+ "\n";
             message += "Class: " + student.getClasses() + "\n";
-            message += "Modules Taken:\n\n";
+            message += "Modules Taken:\n";
             
             for (Module module : student.getModules_Taken()) {
                 moduleCount++;
