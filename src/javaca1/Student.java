@@ -13,6 +13,8 @@ public class Student {
     private String adminNo;
     private String classes;
     private Module[] modules_taken;
+    private String username;
+    private String password;
     
 //    public Module[] modules_taken = {
 //        new Module("ST0405", "GabrielStudys", 4, 0.0),
@@ -27,6 +29,11 @@ public class Student {
         this.adminNo = adminNo;
         this.classes = classes;
         this.modules_taken = modules;
+    }
+    
+    public Student(String username, String password){
+        this.username = username;
+        this.password = password;
     }
     
     public Student() {
@@ -51,6 +58,14 @@ public class Student {
     
     public Module[] getModules_Taken() {
         return modules_taken;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
     
     //setter for modules taken
