@@ -12,9 +12,22 @@ import javax.swing.JOptionPane;
  */
 public class StudentUser {
     public static void main(String[] args) {
-        while(true){
-        // JOptionPane Menu
+        StudentEnquirySystem enquirySystem = new StudentEnquirySystem();
         StudentEnquiryView view = new StudentEnquiryView();
+        while(true){
+        //prompt for username and password
+        String username = view.username();
+        String password = view.password();
+        
+        //Authenticate User
+        if(enquirySystem.authenticate(username, password)){
+            JOptionPane.showMessageDialog(null,
+                    "Login Successful!",
+                    "Success!",
+                    JOptionPane.INFORMATION_MESSAGE);
+        
+            
+        // JOptionPane Menu
         String userInputString = view.showMenu("""
                                                Enter your option: 
                                                
@@ -69,6 +82,12 @@ public class StudentUser {
                 "Error",
                 JOptionPane.ERROR_MESSAGE
                 );
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Incorrect Credentials",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
     }
