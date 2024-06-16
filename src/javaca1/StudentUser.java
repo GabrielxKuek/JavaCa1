@@ -14,8 +14,11 @@ public class StudentUser {
     public static void main(String[] args) {
         StudentEnquirySystem enquirySystem = new StudentEnquirySystem();
         StudentEnquiryView view = new StudentEnquiryView();
+        boolean loggedIn = false;
+        
         while(true){
         //prompt for username and password
+        if(!loggedIn){
         String username = view.username();
         String password = view.password();
         
@@ -25,7 +28,15 @@ public class StudentUser {
                     "Login Successful!",
                     "Success!",
                     JOptionPane.INFORMATION_MESSAGE);
-        
+            loggedIn = true;
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Incorrect Credentials",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            continue;
+        }
+    }
             
         // JOptionPane Menu
         String userInputString = view.showMenu("""
@@ -82,12 +93,6 @@ public class StudentUser {
                 "Error",
                 JOptionPane.ERROR_MESSAGE
                 );
-            }
-        }else{
-            JOptionPane.showMessageDialog(null,
-                    "Incorrect Credentials",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
             }
         }
     }
