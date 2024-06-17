@@ -34,7 +34,8 @@ public class StudentAdminView {
                         1. Add new student
                         2. Delete student
                         3. Add new module for student
-                        4. Quit
+                        4. Logout
+                        5. Quit
                     """,
                     programName,
                     JOptionPane.QUESTION_MESSAGE
@@ -61,14 +62,22 @@ public class StudentAdminView {
                     } while (repeatOption);
                     
                     break;
-                    
+                 
                 case "4":
+                    utils.loginRedirectMessage();
                     repeatMenu = false;
+                    return;
+                    
+                case "5":
+                    repeatMenu = false;
+                    userView.isMenuRepeat = false;
+                    
+                    utils.terminateProgramMessage();
                     
                     break;
 
                 default:
-                    errorMessage();
+                    utils.errorMessage(programName);
                     
             }
         } while (repeatMenu);
@@ -160,12 +169,12 @@ public class StudentAdminView {
             
             StudentManagement.create_student(name, adminNumber, classes, modules_taken);
 
-            JOptionPane.showMessageDialog(null, "Success!", programName, JOptionPane.INFORMATION_MESSAGE);
+            utils.successMessage(programName);
             
             repeatOption = false;
             
         } catch (Exception e) {
-            errorMessage();
+            utils.errorMessage(programName);
             repeatOption = true;
             
         }
@@ -214,7 +223,7 @@ public class StudentAdminView {
             }
             
         } catch (Exception e) {
-            errorMessage();
+            utils.errorMessage(programName);
             repeatOption = true;
         }
         
@@ -303,36 +312,28 @@ public class StudentAdminView {
             repeatOption = false;
             
         } catch (Exception e) {
-            errorMessage();
+            utils.errorMessage(programName);
             
             repeatOption = true;
         }
     }
-    
-    public static void errorMessage() {
-        JOptionPane.showMessageDialog(null,
-                "Invalid input! Please try again.",
-                programName,
-                JOptionPane.ERROR_MESSAGE
-        );
-    }
 
-    // temporary - just for debugging and testing
-    public static void main(String[] args) {
-        showMenu();
-        
-        for (Student student : StudentManagement.students) {
-            System.out.println(student.getName());
-            System.out.println(student.getAdminNo());
-            System.out.println(student.getClasses());
-            System.out.println("----modules taken----");
-            for (Module module : student.getModules_Taken()) {
-                System.out.println(module.getModule_cd());
-                System.out.println(module.getModule_name());
-                System.out.println(module.getCredit_units());
-                System.out.println(module.getStudent_marks());
-            }
-            System.out.println("---------------------\n");
-        }
-    }
+//    // temporary - just for debugging and testing
+//    public static void main(String[] args) {
+//        showMenu();
+//        
+//        for (Student student : StudentManagement.students) {
+//            System.out.println(student.getName());
+//            System.out.println(student.getAdminNo());
+//            System.out.println(student.getClasses());
+//            System.out.println("----modules taken----");
+//            for (Module module : student.getModules_Taken()) {
+//                System.out.println(module.getModule_cd());
+//                System.out.println(module.getModule_name());
+//                System.out.println(module.getCredit_units());
+//                System.out.println(module.getStudent_marks());
+//            }
+//            System.out.println("---------------------\n");
+//        }
+//    }
 }

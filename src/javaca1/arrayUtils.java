@@ -45,8 +45,22 @@ public class arrayUtils {
         return newArray;
     }
     
+    // append module to module array
     public static Module[] appendModuleElement(Module[] original_array, Module new_element) {
         Module[] newArray = new Module[original_array.length + 1];
+        
+        for (int i = 0; i < original_array.length; i++) {
+            newArray[i] = original_array[i];
+        }
+        
+        newArray[original_array.length] = new_element;
+        
+        return newArray;
+    }
+    
+    // append user to user array
+    public static User[] appendUserElement(User[] original_array, User new_element) {
+        User[] newArray = new User[original_array.length + 1];
         
         for (int i = 0; i < original_array.length; i++) {
             newArray[i] = original_array[i];
