@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentUser {
     public static void main(String[] args) {
+        //Student Enquiry System for Student users
         StudentEnquirySystem enquirySystem = new StudentEnquirySystem();
         StudentEnquiryView view = new StudentEnquiryView();
         boolean loggedIn = false;
@@ -94,6 +95,6 @@ public class StudentUser {
                 JOptionPane.ERROR_MESSAGE
                 );
             }
-        }
+        }        
     }
 }

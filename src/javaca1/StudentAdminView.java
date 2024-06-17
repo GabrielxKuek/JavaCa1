@@ -316,7 +316,7 @@ public class StudentAdminView {
                 JOptionPane.ERROR_MESSAGE
         );
     }
-    
+
     // temporary - just for debugging and testing
     public static void main(String[] args) {
         showMenu();
