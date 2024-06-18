@@ -11,11 +11,13 @@ import javax.swing.JOptionPane;
  */
 public class StudentManagement {
     public static Student[] students = {
-        new Student("Rafael Thet Khine", "p6969420", "DIT03", new Module[] {
-            new Module("ST0405", "GabrielStudys", 4, 79)
+        new Student("John Tan", "p2312333", "DIT/FT/2A/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 85),
+            new Module("ST0503", "FOP", 5, 75)
         }),
-        new Student("Gabriel Macam", "p6942069", "DIT09", new Module[] {
-            new Module("ST0504", "DarrenStudys", 3, 80.5)
+        new Student("Samsudin", "p2312555", "DIT/FT/2A/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 75),
+            new Module("ST0503", "FOP", 5, 85)
         }),
         new Student("Kevin Kuek", "p996942", "DIT03", new Module[] {
             new Module("ST0690", "KevinGayStudys", 3, 60)
@@ -72,12 +74,17 @@ public class StudentManagement {
             
             for (Module module : student.getModules_Taken()) {
                 moduleCount++;
+                
+                double marks = module.getStudent_marks();
+                
+                MarksGrade grade = MarksGrade.getGrade(marks);
+                
                 message += String.format("%s. %s/%s/%s: %s\n", 
                         moduleCount, 
                         module.getModule_cd(), 
                         module.getModule_name(), 
                         module.getCredit_units(), 
-                        module.getStudent_marks()
+                        grade
                 );
             }
             message += "-----------------\n";
