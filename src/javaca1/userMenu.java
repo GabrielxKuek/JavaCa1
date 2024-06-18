@@ -11,10 +11,7 @@ package javaca1;
 public class userMenu {
     public static void main(String[] args) {
         // display login menu
-        // switch case to open menu of admin or other based off of login information
-        
-        
-        
+        userView.displayMenu();
     }
     
 } // userMenu end
