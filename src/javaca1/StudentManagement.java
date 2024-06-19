@@ -28,8 +28,7 @@ public class StudentManagement {
         })
     };
     
-    // poop use case method poop
-    
+
     public static void create_student(String name, String adminNo, String classes, Module[] modules) {
         Student newStudent = new Student(name, adminNo, classes, modules);
         Student[] updatedStudents = new Student[students.length+1];
@@ -125,8 +124,10 @@ public class StudentManagement {
                         module.getCredit_units(), 
                         MarksGrade.getGrade(module.getStudent_marks())
                 );
-                
             }
+            double gpa = student.calculateGPA();    
+            message += String.format("\nGPA: %.2f\n", gpa);
+            message += "-----------------\n";
             studentFound = true;
             break;
             
@@ -145,7 +146,7 @@ public class StudentManagement {
         
             JOptionPane.showMessageDialog(null,
             message,
-            "Search Results",
+            "Student Info",
             JOptionPane.INFORMATION_MESSAGE
         );
     }
@@ -167,9 +168,9 @@ public class StudentManagement {
         
         if(!classFound){
             JOptionPane.showMessageDialog(null,
-                    "No students found in class " + classInput + "!",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                    "No students found from class!",
+                    "Class Summary",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         // Dialog Box Config
