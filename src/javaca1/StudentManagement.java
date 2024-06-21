@@ -58,42 +58,76 @@ public class StudentManagement {
     }
     
     public static void display_student() {
-        int studentCount = 0;
         String message = "";
         
-        for(Student student : students){
-            studentCount++;
+        for(int i = 0; i < students.length; i++){
             int moduleCount = 0;
             
-            message += String.format("Student %s:\n\n", studentCount);
-            message += "Name: " + student.getName() + "\n";
-            message += "Admin No.: " + student.getAdminNo()+ "\n";
-            message += "Class: " + student.getClasses() + "\n";
-            message += "Modules Taken:\n";
-            
-            for (Module module : student.getModules_Taken()) {
-                moduleCount++;
+            {
+                message += String.format("Student %s:\n", i + 1);
+                message += "Name: " + students[i].getName() + "\n";
+                message += "Admin No.: " + students[i].getAdminNo()+ "\n";
+                message += "Class: " + students[i].getClasses() + "\n";
+                message += "Modules Taken:\n";
+
+                for (Module module : students[i].getModules_Taken()) {
+                    moduleCount++;
+
+                    double marks = module.getStudent_marks();
+
+                    MarksGrade grade = MarksGrade.getGrade(marks);
+
+                    message += String.format("%s. %s/%s/%s: %s\n", 
+                            moduleCount, 
+                            module.getModule_cd(), 
+                            module.getModule_name(), 
+                            module.getCredit_units(), 
+                            grade
+                    );
+                }
+                message += "-----------------\n";
                 
-                double marks = module.getStudent_marks();
-                
-                MarksGrade grade = MarksGrade.getGrade(marks);
-                
-                message += String.format("%s. %s/%s/%s: %s\n", 
-                        moduleCount, 
-                        module.getModule_cd(), 
-                        module.getModule_name(), 
-                        module.getCredit_units(), 
-                        grade
-                );
+                if (i % 2 != 0) {                    
+                    int response = JOptionPane.showOptionDialog(
+                            null,
+                            message,
+                            "All Student Report",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            new Object[] {"Back", "Previous", "Next"},
+                            "Next"
+                    );
+
+                    // Handling user response
+                    switch (response) {
+                        case 0:
+                            // select back
+                            return;
+                            
+                        case 1:
+                            // select previous
+                            if (i != 1) {
+                                i -= 4;
+                            } else {
+                                i -= 2;
+                            }
+                            message = "";
+                            continue;
+                            
+                        case 2:
+                            // select next
+                            message = "";
+                            break;
+                            
+                        default:
+                            utils.unexpectedErrorMessage("Error");
+                            return;
+                    }
+                    
+                }
             }
-            message += "-----------------\n";
         }
-        
-        JOptionPane.showMessageDialog(null,
-                message,
-                "All Student Report",
-                JOptionPane.INFORMATION_MESSAGE
-            );
     }
     
     public static void search_studentName() {

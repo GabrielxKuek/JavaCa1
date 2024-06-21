@@ -20,6 +20,15 @@ public class utils {
         );
     }
     
+    
+    public static void unexpectedErrorMessage(String programName) {
+        JOptionPane.showMessageDialog(null,
+                "An Unexpected Error has Occurred!",
+                programName,
+                JOptionPane.ERROR_MESSAGE
+        );
+    }
+    
     public static void successMessage(String programName) {
         JOptionPane.showMessageDialog(null,
                 "Success!",
