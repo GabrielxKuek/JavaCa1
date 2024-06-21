@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
  * @author Gabriel Kuek
  */
 public class StudentEnquiryView {
-    static String programName = "Student Enquiry System";
+    //config
+    private static String programName = "Student Enquiry System";
 
     public static void showMenu() {
         String userInputString = "";
@@ -80,18 +81,4 @@ public class StudentEnquiryView {
             }
         } while (true);
     }
-    
-//    public String username(){
-//        return JOptionPane.showInputDialog(null,
-//                "Enter Your Username",
-//                "Student Login",
-//                JOptionPane.QUESTION_MESSAGE);
-//    }
-//    
-//    public String password(){
-//        return JOptionPane.showInputDialog(null,
-//                "Enter Your Password",
-//                "Student Login",
-//                JOptionPane.QUESTION_MESSAGE);
-//    }
 }

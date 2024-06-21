@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
  * @author Darren
  */
 public class StudentManagement {
+    
+    //Student objects
     public static Student[] students = {
         new Student("John Tan", "p2312333", "DIT/FT/2A/01", new Module[] {
             new Module("ST0509", "JPRG", 4, 85),
@@ -125,7 +127,7 @@ public class StudentManagement {
 //        })
     };
     
-
+    //Add new Students
     public static void create_student(String name, String adminNo, String classes, Module[] modules) {
         Student newStudent = new Student(name, adminNo, classes, modules);
         Student[] updatedStudents = new Student[students.length+1];
@@ -140,6 +142,7 @@ public class StudentManagement {
         students = updatedStudents;
     }
     
+    //Delete student
     public static void delete_student(String adminNumber) {
         int iterations = 0;
         
@@ -154,6 +157,7 @@ public class StudentManagement {
         students = arrayUtils.removeStudentElementByIndex(students, iterations);
     }
     
+    //Display All Students
     public static void display_student() {
         String message = "";
         
@@ -227,6 +231,7 @@ public class StudentManagement {
         }
     }
     
+    //Search student by name
     public static void search_studentName() {
         // config
         String userInputForName = JOptionPane.showInputDialog(null,
@@ -282,6 +287,7 @@ public class StudentManagement {
         );
     }
     
+    //Search student by class
     public static void search_studentClass(String classInput) {
         // create temporary arrays to store values
         int qty = 0;
