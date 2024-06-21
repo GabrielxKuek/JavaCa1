@@ -25,7 +25,103 @@ public class StudentManagement {
         new Student("Darren Lin", "p253647", "DAAA99", new Module[] {
             new Module("ST0420", "RafaelHonestStudys", 4, 79.4),
             new Module("ST0690", "KevinGayStudys", 3, 60)
-        })
+        }),
+        new Student("Alice Lim", "p7890123", "DIT/FT/2B/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 88),
+            new Module("ST0503", "FOP", 5, 72)
+        }),
+        new Student("Bob Tan", "p4567890", "DIT/FT/2B/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 79),
+            new Module("ST0503", "FOP", 5, 81)
+        }),
+        new Student("Catherine Lee", "p2345678", "DIT/FT/2C/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 85),
+            new Module("ST0503", "FOP", 5, 90)
+        }),
+        new Student("David Wong", "p3456789", "DIT/FT/2C/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 77),
+            new Module("ST0503", "FOP", 5, 83)
+        }),
+        new Student("Emily Lim", "p5678901", "DIT/FT/2D/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 92),
+            new Module("ST0503", "FOP", 5, 79)
+        }),
+        new Student("Frankie Tan", "p7890123", "DIT/FT/2D/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 81),
+            new Module("ST0503", "FOP", 5, 88)
+        }),
+        new Student("Grace Lim", "p9012345", "DIT/FT/2E/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 86),
+            new Module("ST0503", "FOP", 5, 85)
+        }),
+        new Student("Henry Ng", "p1234567", "DIT/FT/2E/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 78),
+            new Module("ST0503", "FOP", 5, 91)
+        }),
+        new Student("Ivy Tan", "p2345678", "DIT/FT/2F/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 90),
+            new Module("ST0503", "FOP", 5, 82)
+        }),
+        new Student("Jack Lim", "p3456789", "DIT/FT/2F/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 84),
+            new Module("ST0503", "FOP", 5, 87)
+        }),
+        new Student("Karen Wong", "p4567890", "DIT/FT/2G/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 76),
+            new Module("ST0503", "FOP", 5, 93)
+        }),
+        new Student("Leonard Lim", "p5678901", "DIT/FT/2G/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 82),
+            new Module("ST0503", "FOP", 5, 89)
+        }),
+        new Student("Mary Tan", "p6789012", "DIT/FT/2H/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 91),
+            new Module("ST0503", "FOP", 5, 80)
+        }),
+        new Student("Nathan Ng", "p7890123", "DIT/FT/2H/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 79),
+            new Module("ST0503", "FOP", 5, 84)
+        }),
+        new Student("Olivia Lim", "p8901234", "DIT/FT/2I/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 87),
+            new Module("ST0503", "FOP", 5, 86)
+        }),
+        new Student("Peter Tan", "p9012345", "DIT/FT/2I/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 80),
+            new Module("ST0503", "FOP", 5, 92)
+        }),
+        new Student("Queenie Lim", "p0123456", "DIT/FT/2J/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 83),
+            new Module("ST0503", "FOP", 5, 88)
+        }),
+        new Student("Richard Tan", "p1234567", "DIT/FT/2J/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 85),
+            new Module("ST0503", "FOP", 5, 81)
+        }),
+        new Student("Samantha Lim", "p2345678", "DIT/FT/2K/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 88),
+            new Module("ST0503", "FOP", 5, 77)
+        }),
+        new Student("Thomas Ng", "p3456789", "DIT/FT/2K/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 79),
+            new Module("ST0503", "FOP", 5, 89)
+        }),
+        new Student("Ursula Tan", "p4567890", "DIT/FT/2L/01", new Module[] {
+            new Module("ST0509", "JPRG", 4, 90),
+            new Module("ST0503", "FOP", 5, 83)
+        }),
+        new Student("Victor Lim", "p5678901", "DIT/FT/2L/02", new Module[] {
+            new Module("ST0509", "JPRG", 4, 82),
+            new Module("ST0503", "FOP", 5, 91)
+        }),
+        
+//If there's only 1 student on a page, that page won't be displayed and will be
+//redirected to the menu after student 26: Victor Lim
+        
+//        new Student("Sam Oh", "p123456", "DIT/FT/2N/05", new Module[] {
+//            new Module("ST0509", "JPRG", 4, 60),
+//            new Module("ST0503", "FOP", 5, 60)
+//        })
     };
     
 
@@ -93,7 +189,7 @@ public class StudentManagement {
                             message,
                             "All Student Report",
                             JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
+                            JOptionPane.INFORMATION_MESSAGE,
                             null,
                             new Object[] {"Back", "Previous", "Next"},
                             "Next"
