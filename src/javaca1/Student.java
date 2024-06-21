@@ -89,7 +89,9 @@ public class Student {
             new Module("ST0405", "GabrielStudys", 4, 0.0), // mod_code, mod_name, cred_unit, marks
             new Module("ST0504", "DarrenStudys", 3, 0.0),
             new Module("ST0690", "KevinGayStudys", 3, 0.0),
-            new Module("ST0420", "RafaelHonestStudys", 4, 0.0)
+            new Module("ST0420", "RafaelHonestStudys", 4, 0.0),
+            new Module("ST0509", "JPRG", 4, 0.0),
+            new Module("ST0503", "FOP", 5, 0.0)
         }; // sample dataset. later change
     }
     
