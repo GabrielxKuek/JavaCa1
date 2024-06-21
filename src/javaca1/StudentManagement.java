@@ -20,7 +20,8 @@ public class StudentManagement {
             new Module("ST0503", "FOP", 5, 85)
         }),
         new Student("Kevin Kuek", "p996942", "DIT03", new Module[] {
-            new Module("ST0690", "KevinGayStudys", 3, 60)
+            new Module("ST0504", "DarrenStudys", 3, 60),
+            new Module("ST0405", "GabrielStudys", 4, 70)
         }),
         new Student("Darren Lin", "p253647", "DAAA99", new Module[] {
             new Module("ST0420", "RafaelHonestStudys", 4, 79.4),
