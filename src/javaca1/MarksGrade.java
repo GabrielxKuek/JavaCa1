@@ -45,11 +45,12 @@ public enum MarksGrade {
         return MarksGrade.F; 
     }
     
-    public static void main(String[] args) {
-        int marks = 85;
-        MarksGrade grade = MarksGrade.getGrade(marks);
-        System.out.println("Marks: " + marks + ", Grade: " + grade + ", Grade Point: " + grade.getGradePoint());
-    }
+    // testing
+//    public static void main(String[] args) {
+//        int marks = 85;
+//        MarksGrade grade = MarksGrade.getGrade(marks);
+//        System.out.println("Marks: " + marks + ", Grade: " + grade + ", Grade Point: " + grade.getGradePoint());
+//    }
 }
 
 /*

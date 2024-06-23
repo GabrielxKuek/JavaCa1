@@ -85,24 +85,27 @@ public class StudentAdminView {
         // config
         String name = "";
         String adminNumber = "";
-        String classes = "";
+        String studentClass = "";
         Module[] modules_taken = new Module[0];
         int noOfModulesTaken = 0;
         
         try {
             boolean validName = false;
-            while(!validName ){
-            name = JOptionPane.showInputDialog(null,
-                    "Enter name:",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
-                ).trim();
+            while (!validName) {
+                name = JOptionPane.showInputDialog(null,
+                        "Enter name:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    );
+                
+                if (name == null) {
+                    return;
+                } else {
+                    name = name.trim();
+                }
             
-                if(name.length() >= 2 && name.matches("^[a-zA-Z ]+$")){
+                if (name.length() >= 2 && name.matches("^[a-zA-Z ]+$")) {
                     validName = true;
-                    
-                } else if (name == null) {
-                    utils.terminateProgram();
                     
                 } else{
                     JOptionPane.showMessageDialog(null,
@@ -118,7 +121,13 @@ public class StudentAdminView {
                         "Enter Admin Number:",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                ).trim();
+                );
+                
+                if (adminNumber == null) {
+                    return;
+                } else {
+                    adminNumber = adminNumber.trim();
+                }
 
                 // check if adminNumber starts with 'p' and followed by integers
                 if (adminNumber.matches("^p\\d+$")) {
@@ -128,9 +137,6 @@ public class StudentAdminView {
                     // if user forgot 'p', prepend 'p' automatically
                     adminNumber = "p" + adminNumber;
                     validAdmin = true;
-                    
-                } else if (adminNumber == null) {
-                    utils.terminateProgram();
                     
                 } else {
                     JOptionPane.showMessageDialog(null,
@@ -143,16 +149,31 @@ public class StudentAdminView {
             boolean validClass = false;
             
             while (!validClass) {
-                classes = JOptionPane.showInputDialog(null,
+                studentClass = JOptionPane.showInputDialog(null,
                         "Enter Class:",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                    ).trim();
+                    );
                 
-                if (classes == null) {
+                if (studentClass == null) {
+                    return;
+                    
+                } else {
+                    studentClass = studentClass.trim();
+                }
+                
+                if (studentClass == null) {
                     utils.terminateProgram();
                     
-                } else if (classes.matches("^[a-zA-Z]+/[a-zA-Z]+/\\d+[A-Za-z]/\\d+$")){
+                } else if (studentClass.matches("^[a-zA-Z]+/[a-zA-Z]+/\\d+[A-Za-z]/\\d+$")){
+                    String[] classParts = studentClass.split("/");
+
+                    for (int i = 0; i < classParts.length; i++) {
+                        classParts[i] = classParts[i].toUpperCase();
+                    }
+
+                    studentClass = String.join("/", classParts);
+                    
                     validClass = true;
                     
                 } else {
@@ -172,10 +193,12 @@ public class StudentAdminView {
                         "Enter number of Modules Taken:",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                    ).trim();
+                    );
 
                     if (input == null) {
                         return;
+                    } else {
+                        input = input.trim();
                     }
                     
                     // Attempt to parse input to integer
@@ -213,15 +236,19 @@ public class StudentAdminView {
                         "Enter Module Code for module" + i + ":",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                        ).trim();
+                        );
                     
                     if (moduleCode == null) {
                         return;
-                    } else if(moduleCode.matches("^[A-Z0-9]+$")){
+                    } else {
+                        moduleCode = moduleCode.trim();
+                    }
+                        
+                    if (moduleCode.matches("^[A-Z0-9]+$")) {
                         validModuleCode = true;
                     } else {
                         JOptionPane.showMessageDialog(null,
-                            "Module Code is invalid. Please try again",
+                            "Module Code is invalid. Please try again\neg ST123",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                     }
@@ -233,17 +260,22 @@ public class StudentAdminView {
                         "Enter Module Name for module" + i + ":",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                        ).trim();
+                        );
                     
                     if (moduleName == null) {
                         return;
-                    } else if (moduleName.matches("^[a-zA-Z ]+$")){
+                    } else {
+                        moduleName = moduleName.trim();
+                    }
+                        
+                    if (moduleName.matches("^[a-zA-Z ]+$")) {
                         validModuleName = true;
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null,
                             "Module Name is invalid. Please try again",
                             "Error",
-                            JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.ERROR_MESSAGE
+                            );
                     }
                 }
 
@@ -255,10 +287,13 @@ public class StudentAdminView {
                         String input  = JOptionPane.showInputDialog(null,
                             "Enter Credit Unit for module" + i + ":",
                             programName,
-                            JOptionPane.QUESTION_MESSAGE).trim();
+                            JOptionPane.QUESTION_MESSAGE
+                            );
                         
                         if (input == null) {
                             return;
+                        } else {
+                            input = input.trim();
                         }
                         
                         creditUnit = Integer.parseInt(input);
@@ -288,10 +323,12 @@ public class StudentAdminView {
                             "Enter Module Marks for module" + i + ":",
                             programName,
                             JOptionPane.QUESTION_MESSAGE
-                            ).trim();
+                            );
                         
                         if (input == null) {
                             return;
+                        } else {
+                            input = input.trim();
                         }
                         
                         moduleMarks = Float.parseFloat(input);
@@ -325,17 +362,17 @@ public class StudentAdminView {
                 newModules_taken[modules_taken.length] = tempModule;
             }
             
-            StudentManagement.create_student(name, adminNumber, classes, modules_taken);
+            StudentManagement.create_student(name, adminNumber, studentClass, modules_taken);
 
             utils.successMessage(programName);
             
             repeatOption = false;
             
         } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null,
-                "Invalid number format. Please enter a valid number.",
-                "Input Error",
-                JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    "Invalid number format. Please enter a valid number.",
+                    "Input Error",
+                    JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             utils.errorMessage(programName);
             repeatOption = true;
@@ -354,10 +391,12 @@ public class StudentAdminView {
                 "Enter admin number of student:",
                 programName,
                 JOptionPane.QUESTION_MESSAGE
-            ).trim();
+            );
             
             if (adminNo == null) {
                 return;
+            } else {
+                adminNo = adminNo.trim();
             }
 
             for (Student student : StudentManagement.students) {
@@ -416,12 +455,16 @@ public class StudentAdminView {
                     "Enter admin number of student:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                    ).trim();
+                    );
 
-                // Check if adminNumber starts with 'p' and followed by integers
                 if (adminNo == null) {
                     return;
-                } else if (adminNo.matches("^p\\d+$")) {
+                } else {
+                    adminNo = adminNo.trim();
+                }
+                
+                // Check if adminNumber starts with 'p' and followed by integers
+                if (adminNo.matches("^p\\d+$")) {
                     isValidAdmin = true;
                 } else {
                     JOptionPane.showMessageDialog(null,
@@ -448,16 +491,20 @@ public class StudentAdminView {
                         "Enter Module Code for module:",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                        ).trim();
+                        );
+                    
                     if (moduleCode == null) {
                         return;
-                        
-                    } else if (moduleCode.matches("^[A-Z0-9]+$")) {
+                    } else {
+                        moduleCode = moduleCode.trim();
+                    }
+                    
+                    if (moduleCode.matches("^[A-Z0-9]+$")) {
                         isValidModuleCode = true;
                         
                     } else {
                         JOptionPane.showMessageDialog(null,
-                            "Module Code is invalid. Please try again!",
+                            "Module Code is invalid. Please try again and ensure your alphabets are capitalised\neg ST123",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                     }
@@ -470,12 +517,15 @@ public class StudentAdminView {
                         "Enter Module Name for module:",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                    ).trim();
+                    );
                     
                     if (moduleName == null) {
                         return;
+                    } else {
+                        moduleName = moduleName.trim();
+                    }
                         
-                    } else if (moduleName.matches("^[a-zA-Z ]+$")) {
+                    if (moduleName.matches("^[a-zA-Z ]+$")) {
                         isValidModuleName = true;
                         
                     } else {
@@ -494,10 +544,12 @@ public class StudentAdminView {
                         String input  = JOptionPane.showInputDialog(null,
                             "Enter Credit Unit for module:",
                             programName,
-                            JOptionPane.QUESTION_MESSAGE).trim();
+                            JOptionPane.QUESTION_MESSAGE);
                         
                         if (input == null) {
                             return;
+                        } else {
+                            input = input.trim();
                         }
                         
                         creditUnit = Integer.parseInt(input);
@@ -529,23 +581,27 @@ public class StudentAdminView {
                             "Enter Module Marks for module:",
                             programName,
                             JOptionPane.QUESTION_MESSAGE
-                            ).trim();
+                            );
                         
                         if (input == null) {
                             return;
+                        } else {
+                            input = input.trim();
                         }
                         
                         moduleMarks = Float.parseFloat(input);
                         
                         if(moduleMarks > 0 ){
                             isValidModuleMarks = true;
-                        }else{
+                            
+                        } else {
                             JOptionPane.showMessageDialog(null,
                             "Module Marks is invalid. Please try again!",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                         }
-                    }catch(NumberFormatException e){
+                        
+                    } catch(NumberFormatException e) {
                         JOptionPane.showMessageDialog(null,
                         "Invalid input. Please enter a valid integer.",
                         "Invalid Input",
