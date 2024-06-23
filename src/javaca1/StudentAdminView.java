@@ -101,7 +101,7 @@ public class StudentAdminView {
                     JOptionPane.QUESTION_MESSAGE
                 ).trim();
             
-                if(name.length() >= 2 && name.matches("[a-zA-Z ]+")){
+                if(name.length() >= 2 && name.matches("^[a-zA-Z ]+$")){
                     validName = true;
                 }else{
                     JOptionPane.showMessageDialog(null,
@@ -151,14 +151,39 @@ public class StudentAdminView {
                         JOptionPane.ERROR_MESSAGE);
             }
         }
+        
+            noOfModulesTaken = 0; // Initialize outside the try-catch block
 
-            noOfModulesTaken = Integer.parseInt(
-                    JOptionPane.showInputDialog(null,
-                        "Enter number of Modules Taken:",
-                        programName,
-                        JOptionPane.QUESTION_MESSAGE
-                    ).trim()
-                );
+        boolean validNoOfModules = false;
+        while (!validNoOfModules) {
+            try {
+                String input = JOptionPane.showInputDialog(null,
+                    "Enter number of Modules Taken:",
+                    programName,
+                    JOptionPane.QUESTION_MESSAGE
+                ).trim();
+
+            // Attempt to parse input to integer
+            noOfModulesTaken = Integer.parseInt(input);
+
+        // Check if input is a positive integer
+        if (noOfModulesTaken > 0) {
+            validNoOfModules = true; // Exit loop if input is valid
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Number of Modules Taken must be a positive integer.",
+                    "Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (NumberFormatException e) {
+        // Catch exception if input cannot be parsed to integer
+        JOptionPane.showMessageDialog(null,
+                "Invalid input. Please enter a valid integer.",
+                "Invalid Input",
+                JOptionPane.ERROR_MESSAGE);
+    }
+}
 
             for (int i = 1; i <= noOfModulesTaken; i++) {
                 // in each "add module to student" iteration
@@ -167,17 +192,41 @@ public class StudentAdminView {
                 int creditUnit = 0;
                 double moduleMarks = 0.0;
 
-                moduleCode = JOptionPane.showInputDialog(null,
-                    "Enter Module Code for module" + i + ":",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
-                ).trim();
+                boolean validModuleCode = false;
+                while(!validModuleCode){
+                    moduleCode = JOptionPane.showInputDialog(null,
+                        "Enter Module Code for module" + i + ":",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim();
+                    
+                    if(moduleCode.matches("^[A-Z0-9]+$")){
+                        validModuleCode = true;
+                    }else{
+                        JOptionPane.showMessageDialog(null,
+                        "Module Code is invalid. Please try again!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+                }
 
-                moduleName = JOptionPane.showInputDialog(null,
-                    "Enter Module Name for module" + i + ":",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
-                ).trim();
+                boolean validModuleName = false;
+                while(!validModuleName){
+                    moduleName = JOptionPane.showInputDialog(null,
+                        "Enter Module Name for module" + i + ":",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim();
+                    
+                    if(moduleName.matches("^[a-zA-Z ]+$")){
+                        validModuleName = true;
+                    }else{
+                        JOptionPane.showMessageDialog(null,
+                        "Module Name is invalid. Please try again!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+                }
 
                 creditUnit = Integer.parseInt(
                     JOptionPane.showInputDialog(null,
@@ -219,7 +268,6 @@ public class StudentAdminView {
                 "Invalid number format. Please enter a valid number.",
                 "Input Error",
                 JOptionPane.ERROR_MESSAGE);
-        addNewStudent();
         }catch (Exception e) {
             utils.errorMessage(programName);
             repeatOption = true;
