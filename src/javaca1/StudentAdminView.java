@@ -525,7 +525,7 @@ public class StudentAdminView {
 
                 boolean isValidModuleName = false;
                 
-                while (isValidModuleName) {
+                while (!isValidModuleName) {
                     moduleName = JOptionPane.showInputDialog(null,
                         "Enter Module Name for module:",
                         programName,
