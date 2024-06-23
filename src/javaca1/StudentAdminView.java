@@ -228,13 +228,40 @@ public class StudentAdminView {
                     }
                 }
 
-                creditUnit = Integer.parseInt(
-                    JOptionPane.showInputDialog(null,
+//                creditUnit = Integer.parseInt(
+//                    JOptionPane.showInputDialog(null,
+//                        "Enter Credit Unit for module" + i + ":",
+//                        programName,
+//                        JOptionPane.QUESTION_MESSAGE
+//                    ).trim()
+//                );
+
+                creditUnit = 0;
+                boolean validCreditUnit = false;
+                while(!validCreditUnit){
+                    try{
+                        String input  = JOptionPane.showInputDialog(null,
                         "Enter Credit Unit for module" + i + ":",
                         programName,
-                        JOptionPane.QUESTION_MESSAGE
-                    ).trim()
-                );
+                        JOptionPane.QUESTION_MESSAGE).trim();
+                        
+                        creditUnit = Integer.parseInt(input);
+                        
+                        if(creditUnit > 0 ){
+                            validCreditUnit = true;
+                        }else{
+                            JOptionPane.showMessageDialog(null,
+                            "Credit Unit is invalid. Please try again!",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                        }
+                    }catch(NumberFormatException e){
+                        JOptionPane.showMessageDialog(null,
+                        "Invalid input. Please enter a valid integer.",
+                        "Invalid Input",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+                }
 
                 moduleMarks = Float.parseFloat(
                     JOptionPane.showInputDialog(null,
