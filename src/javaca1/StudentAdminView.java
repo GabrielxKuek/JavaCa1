@@ -466,6 +466,10 @@ public class StudentAdminView {
                 // Check if adminNumber starts with 'p' and followed by integers
                 if (adminNo.matches("^p\\d+$")) {
                     isValidAdmin = true;
+                } else if (adminNo.matches("^\\d+$")) {
+                    // if user forgot 'p', prepend 'p' automatically
+                    adminNo = "p" + adminNo;
+                    isValidAdmin = true;
                 } else {
                     JOptionPane.showMessageDialog(null,
                         "Admin Number must start with 'p' and followed by integers, or just integers.",
@@ -481,6 +485,15 @@ public class StudentAdminView {
                 }
 
                 iterations++;
+            }
+            
+            if (iterations == StudentManagement.students.length) {
+                JOptionPane.showMessageDialog(null, 
+                        "No student with admin number of " + adminNo + " exists. Please try again.",
+                        programName,
+                        JOptionPane.ERROR_MESSAGE);
+                
+                return;
             }
 
             // code for adding module
