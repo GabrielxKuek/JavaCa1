@@ -40,10 +40,6 @@ public class StudentAdminView {
                     programName,
                     JOptionPane.QUESTION_MESSAGE
             ).trim();
-            
-            if (userSelection == null) {
-                return;
-            }
 
             switch (userSelection) {
                 case "1":
