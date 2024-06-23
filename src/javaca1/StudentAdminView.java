@@ -134,12 +134,23 @@ public class StudentAdminView {
             }
         }
 
-
+        boolean validClass = false;
+        while(!validClass){
             classes = JOptionPane.showInputDialog(null,
                     "Enter Class:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
                 ).trim();
+            
+            if(classes.matches("^[a-zA-Z]+/[a-zA-Z]+/\\d+[A-Za-z]/\\d+$")){
+                validClass = true;
+            }else{
+                JOptionPane.showMessageDialog(null,
+                        "Input must be capitalized and must follow the exact format!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
             noOfModulesTaken = Integer.parseInt(
                     JOptionPane.showInputDialog(null,
