@@ -111,79 +111,79 @@ public class StudentAdminView {
                 }
             }
             
-        boolean validAdmin = false;
-        while (!validAdmin) {
-            adminNumber = JOptionPane.showInputDialog(null,
-                    "Enter Admin Number:",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
-            ).trim();
-
-            // Check if adminNumber starts with 'p' and followed by integers
-            if (adminNumber.matches("^p\\d+$")) {
-                validAdmin = true;
-            } else if (adminNumber.matches("^\\d+$")) {
-                // If user forgot 'p', prepend 'p' automatically
-                adminNumber = "p" + adminNumber;
-                validAdmin = true;
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Admin Number must start with 'p' and followed by integers, or just integers.",
-                        "Invalid Input",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-        boolean validClass = false;
-        while(!validClass){
-            classes = JOptionPane.showInputDialog(null,
-                    "Enter Class:",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
+            boolean validAdmin = false;
+            while (!validAdmin) {
+                adminNumber = JOptionPane.showInputDialog(null,
+                        "Enter Admin Number:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
                 ).trim();
-            
-            if(classes.matches("^[a-zA-Z]+/[a-zA-Z]+/\\d+[A-Za-z]/\\d+$")){
-                validClass = true;
-            }else{
-                JOptionPane.showMessageDialog(null,
-                        "Input must be capitalized and must follow the exact format!",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
+
+                // Check if adminNumber starts with 'p' and followed by integers
+                if (adminNumber.matches("^p\\d+$")) {
+                    validAdmin = true;
+                } else if (adminNumber.matches("^\\d+$")) {
+                    // If user forgot 'p', prepend 'p' automatically
+                    adminNumber = "p" + adminNumber;
+                    validAdmin = true;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Admin Number must start with 'p' and followed by integers, or just integers.",
+                            "Invalid Input",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
-        }
+
+            boolean validClass = false;
+            while(!validClass){
+                classes = JOptionPane.showInputDialog(null,
+                        "Enter Class:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim();
+
+                if(classes.matches("^[a-zA-Z]+/[a-zA-Z]+/\\d+[A-Za-z]/\\d+$")){
+                    validClass = true;
+                }else{
+                    JOptionPane.showMessageDialog(null,
+                            "Input must be capitalized and must follow the exact format!",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
         
             noOfModulesTaken = 0; // Initialize outside the try-catch block
 
-        boolean validNoOfModules = false;
-        while (!validNoOfModules) {
-            try {
-                String input = JOptionPane.showInputDialog(null,
-                    "Enter number of Modules Taken:",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
-                ).trim();
+            boolean validNoOfModules = false;
+            while (!validNoOfModules) {
+                try {
+                    String input = JOptionPane.showInputDialog(null,
+                        "Enter number of Modules Taken:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim();
 
-            // Attempt to parse input to integer
-            noOfModulesTaken = Integer.parseInt(input);
+                    // Attempt to parse input to integer
+                    noOfModulesTaken = Integer.parseInt(input);
 
-        // Check if input is a positive integer
-        if (noOfModulesTaken > 0) {
-            validNoOfModules = true; // Exit loop if input is valid
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "Number of Modules Taken must be a positive integer.",
-                    "Invalid Input",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+                    // Check if input is a positive integer
+                    if (noOfModulesTaken > 0) {
+                        validNoOfModules = true; // Exit loop if input is valid
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Number of Modules Taken must be a positive integer.",
+                                "Invalid Input",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
 
-    } catch (NumberFormatException e) {
-        // Catch exception if input cannot be parsed to integer
-        JOptionPane.showMessageDialog(null,
-                "Invalid input. Please enter a valid integer.",
-                "Invalid Input",
-                JOptionPane.ERROR_MESSAGE);
-    }
-}
+                } catch (NumberFormatException e) {
+                    // Catch exception if input cannot be parsed to integer
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid input. Please enter a valid integer.",
+                            "Invalid Input",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
 
             for (int i = 1; i <= noOfModulesTaken; i++) {
                 // in each "add module to student" iteration
@@ -290,12 +290,12 @@ public class StudentAdminView {
             
             repeatOption = false;
             
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null,
                 "Invalid number format. Please enter a valid number.",
                 "Input Error",
                 JOptionPane.ERROR_MESSAGE);
-        }catch (Exception e) {
+        } catch (Exception e) {
             utils.errorMessage(programName);
             repeatOption = true;
             

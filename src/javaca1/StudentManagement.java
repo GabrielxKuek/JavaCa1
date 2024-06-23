@@ -197,6 +197,7 @@ public class StudentManagement {
 
                     // Handling user response
                     switch (response) {
+                            
                         case 0:
                             // select back
                             return;
@@ -318,5 +319,12 @@ public class StudentManagement {
                 "Class Summary",
                 JOptionPane.INFORMATION_MESSAGE
         );
+    }
+    
+    // inheritance to create custom error message when user closes dialog box or click cancel
+    public static class UserTerminateProgramException extends Exception {
+        public UserTerminateProgramException() {
+            super();
+        }
     }
 }

@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package javaca1;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Gabriel Kuek
  */
+// imports
+import javax.swing.JOptionPane;
+import javaca1.utils;
+
 public class StudentEnquiryView {
     //config
     private static String programName = "Student Enquiry System";
@@ -34,9 +36,15 @@ public class StudentEnquiryView {
                 JOptionPane.QUESTION_MESSAGE
             );
             
-            // prompt for user input
+            // error handling for user input
             try {
+                
+                if (userInputString == null) {
+                    throw new UserTerminateProgramException();
+                }
+                
                 userInput = Integer.parseInt(userInputString.trim());
+                
             } catch (NumberFormatException e) {
                 // Handle non-integer input
                 JOptionPane.showMessageDialog(null,
@@ -44,6 +52,10 @@ public class StudentEnquiryView {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
                 continue; // Restart the loop to prompt for input again
+                
+            } catch (UserTerminateProgramException e) {
+                utils.terminateProgramMessage();
+                return;
             }
             
             StudentManagement studentManagement = new StudentManagement();
@@ -72,13 +84,17 @@ public class StudentEnquiryView {
                     utils.terminateProgramMessage();
                     userView.isMenuRepeat = false;
                     return;
+                    
                 default:
-                    JOptionPane.showMessageDialog(null,
-                    "Please provide a valid input",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE
-                    );
+                    utils.errorMessage("Error");
             }
         } while (true);
+    }
+    
+    // inheritance to create custom error message when user closes dialog box or click cancel
+    public static class UserTerminateProgramException extends Exception {
+        public UserTerminateProgramException() {
+            super();
+        }
     }
 }
