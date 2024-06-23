@@ -228,14 +228,6 @@ public class StudentAdminView {
                     }
                 }
 
-//                creditUnit = Integer.parseInt(
-//                    JOptionPane.showInputDialog(null,
-//                        "Enter Credit Unit for module" + i + ":",
-//                        programName,
-//                        JOptionPane.QUESTION_MESSAGE
-//                    ).trim()
-//                );
-
                 creditUnit = 0;
                 boolean validCreditUnit = false;
                 while(!validCreditUnit){
@@ -263,13 +255,33 @@ public class StudentAdminView {
                     }
                 }
 
-                moduleMarks = Float.parseFloat(
-                    JOptionPane.showInputDialog(null,
+                moduleMarks = 0;
+                boolean validModuleMarks = false;
+                while(!validModuleMarks){
+                    try{
+                        String input = JOptionPane.showInputDialog(null,
                         "Enter Module Marks for module" + i + ":",
                         programName,
                         JOptionPane.QUESTION_MESSAGE
-                    ).trim()
-                );
+                    ).trim();
+                        
+                        moduleMarks = Integer.parseInt(input);
+                        
+                        if(moduleMarks > 0 ){
+                            validModuleMarks = true;
+                        }else{
+                            JOptionPane.showMessageDialog(null,
+                            "Module Marks is invalid. Please try again!",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                        }
+                    }catch(NumberFormatException e){
+                        JOptionPane.showMessageDialog(null,
+                        "Invalid input. Please enter a valid integer.",
+                        "Invalid Input",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+                }
 
                 // create module with given information
                 Module tempModule = new Module(moduleCode, moduleName, creditUnit, moduleMarks);
@@ -382,11 +394,23 @@ public class StudentAdminView {
 
             // code for adding module
             do {
-                moduleCode = JOptionPane.showInputDialog(null,
-                    "Enter Module Code for module:",
-                    programName,
-                    JOptionPane.QUESTION_MESSAGE
-                ).trim();
+                boolean validModuleCd = false;
+                while(!validModuleCd){
+                    moduleCode = JOptionPane.showInputDialog(null,
+                        "Enter Module Code for module:",
+                        programName,
+                        JOptionPane.QUESTION_MESSAGE
+                    ).trim();
+                    
+                    if(moduleCode.matches("^[A-Z0-9]+$")){
+                        validModuleCd = true;
+                    }else{
+                        JOptionPane.showMessageDialog(null,
+                        "Module Code is invalid. Please try again!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+                }
 
                 moduleName = JOptionPane.showInputDialog(null,
                     "Enter Module Name for module:",
