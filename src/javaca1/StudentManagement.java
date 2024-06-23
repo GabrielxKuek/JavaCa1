@@ -241,8 +241,7 @@ public class StudentManagement {
 
             // error handling
             if (userInputForName == null) {
-                utils.terminateProgram();
-                
+                StudentEnquiryView.showMenu();
             } else if (userInputForName.equals("")) {
                 utils.errorMessage("Error");
                 
@@ -321,7 +320,7 @@ public class StudentManagement {
             JOptionPane.showMessageDialog(null,
                     "No students found from class!",
                     "Class Summary",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         // Dialog Box Config
