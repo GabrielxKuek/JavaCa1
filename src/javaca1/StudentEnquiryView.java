@@ -69,7 +69,12 @@ public class StudentEnquiryView {
                     "Enter the class name to search",
                     "Search",
                     JOptionPane.QUESTION_MESSAGE
-                    );                
+                    ); 
+                    
+                    if (classInput == null) {
+                        utils.terminateProgram();
+                    }
+                    
                     studentManagement.search_studentClass(classInput);
                     break;
                 case 3:

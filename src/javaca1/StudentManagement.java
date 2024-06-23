@@ -194,9 +194,11 @@ public class StudentManagement {
                             new Object[] {"Back", "Previous", "Next"},
                             "Next"
                     );
-
+                    
                     // Handling user response
                     switch (response) {
+                        case JOptionPane.CLOSED_OPTION:
+                            utils.terminateProgram();
                             
                         case 0:
                             // select back
@@ -230,10 +232,26 @@ public class StudentManagement {
     //Search student by name
     public static void search_studentName() {
         // config
-        String userInputForName = JOptionPane.showInputDialog(null,
-                "Enter the student name to search", "Search",
-                JOptionPane.QUESTION_MESSAGE);
+        String userInputForName = "";
         
+        while (true) {
+            userInputForName = JOptionPane.showInputDialog(null,
+                    "Enter the student name to search", "Search",
+                    JOptionPane.QUESTION_MESSAGE);
+
+            // error handling
+            if (userInputForName == null) {
+                utils.terminateProgram();
+                
+            } else if (userInputForName.equals("")) {
+                utils.errorMessage("Error");
+                
+            } else {
+                break;
+            }
+        }
+        
+        // business logic
         String message = "";
         int iterations = 0;
         boolean studentFound = false;
@@ -298,7 +316,7 @@ public class StudentManagement {
                 classFound = true;
             }
         }      
-        
+      
         if(!classFound){
             JOptionPane.showMessageDialog(null,
                     "No students found from class!",
@@ -319,12 +337,5 @@ public class StudentManagement {
                 "Class Summary",
                 JOptionPane.INFORMATION_MESSAGE
         );
-    }
-    
-    // inheritance to create custom error message when user closes dialog box or click cancel
-    public static class UserTerminateProgramException extends Exception {
-        public UserTerminateProgramException() {
-            super();
-        }
     }
 }
