@@ -93,17 +93,47 @@ public class StudentAdminView {
         int noOfModulesTaken = 0;
         
         try {
+            boolean validName = false;
+            while(!validName ){
             name = JOptionPane.showInputDialog(null,
                     "Enter name:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
                 ).trim();
-
+            
+                if(name.length() >= 2 && name.matches("[a-zA-Z ]+")){
+                    validName = true;
+                }else{
+                    JOptionPane.showMessageDialog(null,
+                            "Your name cannot be less than 2 characters or contain any special characters!",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
+        boolean validAdmin = false;
+        while (!validAdmin) {
             adminNumber = JOptionPane.showInputDialog(null,
-                    "Enter Admin:",
+                    "Enter Admin Number:",
                     programName,
                     JOptionPane.QUESTION_MESSAGE
-                ).trim();
+            ).trim();
+
+            // Check if adminNumber starts with 'p' and followed by integers
+            if (adminNumber.matches("^p\\d+$")) {
+                validAdmin = true;
+            } else if (adminNumber.matches("^\\d+$")) {
+                // If user forgot 'p', prepend 'p' automatically
+                adminNumber = "p" + adminNumber;
+                validAdmin = true;
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Admin Number must start with 'p' and followed by integers, or just integers.",
+                        "Invalid Input",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
 
             classes = JOptionPane.showInputDialog(null,
                     "Enter Class:",
@@ -173,7 +203,13 @@ public class StudentAdminView {
             
             repeatOption = false;
             
-        } catch (Exception e) {
+        }catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null,
+                "Invalid number format. Please enter a valid number.",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE);
+        addNewStudent();
+        }catch (Exception e) {
             utils.errorMessage(programName);
             repeatOption = true;
             
@@ -315,7 +351,7 @@ public class StudentAdminView {
             utils.errorMessage(programName);
             
             repeatOption = true;
-        }
+        } 
     }
 
 //    // temporary - just for debugging and testing
