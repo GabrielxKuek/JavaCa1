@@ -21,13 +21,14 @@ public class StudentManagement {
             new Module("ST0509", "JPRG", 4, 75),
             new Module("ST0503", "FOP", 5, 85)
         }),
-        new Student("Kevin Kuek", "p996942", "DIT03", new Module[] {
+        new Student("Kevin Kuek", "p996942", "DIT/FT/2A/02", new Module[] {
             new Module("ST0504", "DarrenStudys", 3, 60),
-            new Module("ST0405", "GabrielStudys", 4, 70)
+            new Module("ST0405", "GabrielGladlyStudys", 4, 70)
         }),
-        new Student("Darren Lin", "p253647", "DAAA99", new Module[] {
+        new Student("Darren Lin", "p253647", "DIT/FT/2A/02", new Module[] {
             new Module("ST0420", "RafaelHonestStudys", 4, 79.4),
-            new Module("ST0690", "KevinGayStudys", 3, 60)
+            new Module("ST0690", "KevinHappyStudys", 3, 60),
+            new Module("ST9323", "DarrenSelfStudies", 4, 50)
         }),
         new Student("Alice Lim", "p7890123", "DIT/FT/2B/01", new Module[] {
             new Module("ST0509", "JPRG", 4, 88),
@@ -118,13 +119,7 @@ public class StudentManagement {
             new Module("ST0503", "FOP", 5, 91)
         }),
         
-//If there's only 1 student on a page, that page won't be displayed and will be
-//redirected to the menu after student 26: Victor Lim
-        
-//        new Student("Sam Oh", "p123456", "DIT/FT/2N/05", new Module[] {
-//            new Module("ST0509", "JPRG", 4, 60),
-//            new Module("ST0503", "FOP", 5, 60)
-//        })
+    // When clicking next at the last student, it will redirect user to menu selection page
     };
     
     //Add new Students
@@ -188,7 +183,7 @@ public class StudentManagement {
                 }
                 message += "-----------------\n";
                 
-                if (i % 2 != 0) {                    
+                if (i % 2 != 0 || i == students.length - 1) {                    
                     int response = JOptionPane.showOptionDialog(
                             null,
                             message,

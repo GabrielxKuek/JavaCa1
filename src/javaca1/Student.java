@@ -11,16 +11,16 @@ package javaca1;
 public class Student {
     private String name;
     private String adminNo;
-    private String classes;
+    private String studentClass;
     private Module[] modules_taken;
     private String username;
     private String password;
 
     // student class constructors
-    public Student(String name, String adminNo, String classes, Module[] modules) {
+    public Student(String name, String adminNo, String studentClass, Module[] modules) {
         this.name = name;
         this.adminNo = adminNo;
-        this.classes = classes;
+        this.studentClass = studentClass;
         this.modules_taken = modules;
     }
     
@@ -32,7 +32,7 @@ public class Student {
     public Student() {
         this.name = "";
         this.adminNo = "";
-        this.classes = "";
+        this.studentClass = "";
         this.modules_taken = new Module[0];
     }
     
@@ -46,7 +46,7 @@ public class Student {
     }
 
     public String getClasses() {
-        return classes;
+        return studentClass;
     }
     
     public Module[] getModules_Taken() {

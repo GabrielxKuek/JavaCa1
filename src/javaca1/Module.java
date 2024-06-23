@@ -9,32 +9,32 @@ package javaca1;
  * @author Darren
  */
 public class Module {
-    private String module_cd;
-    private String module_name;
-    private int credit_units;
-    private double student_marks;
+    private String moduleCode;
+    private String moduleName;
+    private int creditUnits;
+    private double studentMarks;
     
-    public Module(String module_cd, String module_name, int credit_units, double student_marks) {
-        this.module_cd = module_cd;
-        this.module_name = module_name;
-        this.credit_units = credit_units;
-        this.student_marks = student_marks;
+    public Module(String moduleCode, String moduleName, int creditUnits, double studentMarks) {
+        this.moduleCode = moduleCode;
+        this.moduleName = moduleName;
+        this.creditUnits = creditUnits;
+        this.studentMarks = studentMarks;
     }
-
+    
     public String getModule_cd() {
-        return module_cd;
+        return moduleCode;
     }
 
     public String getModule_name() {
-        return module_name;
+        return moduleName;
     }
 
     public int getCredit_units() {
-        return credit_units;
+        return creditUnits;
     }
 
     public double getStudent_marks() {
-        return student_marks;
+        return studentMarks;
     }
     
     
