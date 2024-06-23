@@ -54,8 +54,7 @@ public class StudentEnquiryView {
                 continue; // Restart the loop to prompt for input again
                 
             } catch (UserTerminateProgramException e) {
-                utils.terminateProgramMessage();
-                return;
+                utils.terminateProgram();
             }
             
             StudentManagement studentManagement = new StudentManagement();
@@ -81,9 +80,7 @@ public class StudentEnquiryView {
                     utils.loginRedirectMessage();
                     return;
                 case 5:
-                    utils.terminateProgramMessage();
-                    userView.isMenuRepeat = false;
-                    return;
+                    utils.terminateProgram();
                     
                 default:
                     utils.errorMessage("Error");

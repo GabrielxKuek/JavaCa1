@@ -72,7 +72,7 @@ public class StudentAdminView {
                     repeatMenu = false;
                     userView.isMenuRepeat = false;
                     
-                    utils.terminateProgramMessage();
+                    utils.terminateProgram();
                     
                     break;
 

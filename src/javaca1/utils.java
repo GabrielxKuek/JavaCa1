@@ -37,12 +37,13 @@ public class utils {
         );
     }
     
-    public static void terminateProgramMessage() {
+    public static void terminateProgram() {
         JOptionPane.showMessageDialog(null,
                 "Program Terminated.\nThank you!",
                 "Message",
                 JOptionPane.INFORMATION_MESSAGE
         );
+        System.exit(0);
     }
     
     public static void loginRedirectMessage() {

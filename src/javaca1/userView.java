@@ -26,11 +26,21 @@ public class userView {
                     programName,
                     JOptionPane.QUESTION_MESSAGE);
 
+            // error handling
+            if (userInputUsername == null) {
+                utils.terminateProgram();
+            }
+            
             userInputPassword = JOptionPane.showInputDialog(null,
                     "Enter your password",
                     programName,
                     JOptionPane.QUESTION_MESSAGE);
-
+            
+            // error handling
+            if (userInputPassword == null) {
+                utils.terminateProgram();
+            }
+            
             // creates temporary instance of user to be used as arguments
             tempUser.setUsername(userInputUsername);
             tempUser.setPassword(userInputPassword);
@@ -47,7 +57,7 @@ public class userView {
                 // if user is illegal
                 JOptionPane.showMessageDialog(null,
                     "Incorrect credentials. Please try again!",
-                    "Success!",
+                    "Error!",
                     JOptionPane.ERROR_MESSAGE);
                         
                 continue;
