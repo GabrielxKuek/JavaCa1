@@ -329,10 +329,10 @@ public class StudentUserView extends javax.swing.JFrame {
 
         jPanel2.add(panelForModuleInfo);
 
-        panelForResults.setBorder(javax.swing.BorderFactory.createTitledBorder("Result"));
+        panelForResults.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelForResults.setLayout(new java.awt.GridBagLayout());
 
-        panelForTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelForTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Result"));
 
         jScrollPane1.setEnabled(false);
 

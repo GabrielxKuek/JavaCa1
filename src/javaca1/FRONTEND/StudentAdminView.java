@@ -49,14 +49,11 @@ public class StudentAdminView extends javax.swing.JFrame {
         lblForModName = new javax.swing.JLabel();
         lblForMarks = new javax.swing.JLabel();
         lblForCredit = new javax.swing.JLabel();
-        lblForGrade = new javax.swing.JLabel();
         ModCode = new javax.swing.JTextField();
         ModName = new javax.swing.JTextField();
         ModMarks = new javax.swing.JTextField();
         ModCredits = new javax.swing.JTextField();
-        ModGrade = new javax.swing.JTextField();
         buttonForNextMod = new javax.swing.JButton();
-        buttonForPrevMod = new javax.swing.JButton();
         panelForResults = new javax.swing.JPanel();
         panelForTextArea = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,7 +64,7 @@ public class StudentAdminView extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(2, 2));
 
-        panelForStudentInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Student 1 of 3"));
+        panelForStudentInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Student"));
         panelForStudentInfo.setLayout(new java.awt.GridBagLayout());
 
         lblForName.setText("Name:");
@@ -213,7 +210,7 @@ public class StudentAdminView extends javax.swing.JFrame {
 
         jPanel2.add(panelForSearchStudentName);
 
-        panelForModuleInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Module 1 of 3"));
+        panelForModuleInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Module"));
         panelForModuleInfo.setLayout(new java.awt.GridBagLayout());
 
         lblForModCode.setText("Mod Code:");
@@ -251,15 +248,6 @@ public class StudentAdminView extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForModuleInfo.add(lblForCredit, gridBagConstraints);
-
-        lblForGrade.setText("Grade");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelForModuleInfo.add(lblForGrade, gridBagConstraints);
 
         ModCode.setText("Mod Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -301,17 +289,7 @@ public class StudentAdminView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForModuleInfo.add(ModCredits, gridBagConstraints);
 
-        ModGrade.setText("Grade");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelForModuleInfo.add(ModGrade, gridBagConstraints);
-
-        buttonForNextMod.setText("Next");
+        buttonForNextMod.setText("Create");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -319,20 +297,12 @@ public class StudentAdminView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 50, 0, 0);
         panelForModuleInfo.add(buttonForNextMod, gridBagConstraints);
 
-        buttonForPrevMod.setText("Prev");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 50, 0, 0);
-        panelForModuleInfo.add(buttonForPrevMod, gridBagConstraints);
-
         jPanel2.add(panelForModuleInfo);
 
-        panelForResults.setBorder(javax.swing.BorderFactory.createTitledBorder("Result"));
+        panelForResults.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelForResults.setLayout(new java.awt.GridBagLayout());
 
-        panelForTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelForTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Result"));
 
         jScrollPane1.setEnabled(false);
 
@@ -438,7 +408,6 @@ public class StudentAdminView extends javax.swing.JFrame {
     private javax.swing.JTextField GPA;
     private javax.swing.JTextField ModCode;
     private javax.swing.JTextField ModCredits;
-    private javax.swing.JTextField ModGrade;
     private javax.swing.JTextField ModMarks;
     private javax.swing.JTextField ModName;
     private javax.swing.JTextField Name;
@@ -447,7 +416,6 @@ public class StudentAdminView extends javax.swing.JFrame {
     private javax.swing.JButton buttonForExit;
     private javax.swing.JButton buttonForNextMod;
     private javax.swing.JButton buttonForNextStudent;
-    private javax.swing.JButton buttonForPrevMod;
     private javax.swing.JButton buttonForPrevStudent;
     private javax.swing.JButton buttonForSearch;
     private javax.swing.JPanel jPanel2;
@@ -456,7 +424,6 @@ public class StudentAdminView extends javax.swing.JFrame {
     private javax.swing.JLabel lblForClass;
     private javax.swing.JLabel lblForCredit;
     private javax.swing.JLabel lblForGPA;
-    private javax.swing.JLabel lblForGrade;
     private javax.swing.JLabel lblForMarks;
     private javax.swing.JLabel lblForModCode;
     private javax.swing.JLabel lblForModName;
