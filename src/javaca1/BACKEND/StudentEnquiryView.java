@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package javaca1;
+package javaca1.BACKEND;
 /**
  *
  * @author Gabriel Kuek
  */
 // imports
 import javax.swing.JOptionPane;
-import javaca1.utils;
+import javaca1.BACKEND.utils;
 
 public class StudentEnquiryView {
     //config
