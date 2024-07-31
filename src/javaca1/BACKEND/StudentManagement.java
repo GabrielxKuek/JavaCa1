@@ -42,7 +42,7 @@ public class StudentManagement {
             new Module("ST0509", "JPRG", 4, 85),
             new Module("ST0503", "FOP", 5, 90)
         }),
-        new Student("David Wong", "p3456789", "DIT/FT/2C/02", new Module[] {
+        new Student("Darren Wong", "p3456789", "DIT/FT/2C/02", new Module[] {
             new Module("ST0509", "JPRG", 4, 77),
             new Module("ST0503", "FOP", 5, 83)
         }),
