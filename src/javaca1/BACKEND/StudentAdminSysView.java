@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package javaca1.FRONTEND;
+package javaca1.BACKEND;
 
 /**
  *
  * @author Darren
  */
-public class StudentAdminView extends javax.swing.JFrame {
+public class StudentAdminSysView extends javax.swing.JFrame {
 
     /**
-     * Creates new form StudentUserView
+     * Creates new form StudentAdminSysView
      */
-    public StudentAdminView() {
+    public StudentAdminSysView() {
         initComponents();
     }
 
@@ -49,22 +49,25 @@ public class StudentAdminView extends javax.swing.JFrame {
         lblForModName = new javax.swing.JLabel();
         lblForMarks = new javax.swing.JLabel();
         lblForCredit = new javax.swing.JLabel();
+        lblForGrade = new javax.swing.JLabel();
         ModCode = new javax.swing.JTextField();
         ModName = new javax.swing.JTextField();
         ModMarks = new javax.swing.JTextField();
         ModCredits = new javax.swing.JTextField();
+        ModGrade = new javax.swing.JTextField();
         buttonForNextMod = new javax.swing.JButton();
+        buttonForPrevMod = new javax.swing.JButton();
         panelForResults = new javax.swing.JPanel();
         panelForTextArea = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TextAreaForResults = new javax.swing.JTextArea();
+        jTextArea1 = new javax.swing.JTextArea();
         buttonForExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setLayout(new java.awt.GridLayout(2, 2));
 
-        panelForStudentInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Student"));
+        panelForStudentInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Student 1 of 3"));
         panelForStudentInfo.setLayout(new java.awt.GridBagLayout());
 
         lblForName.setText("Name:");
@@ -210,7 +213,7 @@ public class StudentAdminView extends javax.swing.JFrame {
 
         jPanel2.add(panelForSearchStudentName);
 
-        panelForModuleInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Module"));
+        panelForModuleInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Module 1 of 3"));
         panelForModuleInfo.setLayout(new java.awt.GridBagLayout());
 
         lblForModCode.setText("Mod Code:");
@@ -248,6 +251,15 @@ public class StudentAdminView extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForModuleInfo.add(lblForCredit, gridBagConstraints);
+
+        lblForGrade.setText("Grade");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelForModuleInfo.add(lblForGrade, gridBagConstraints);
 
         ModCode.setText("Mod Code");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -289,7 +301,17 @@ public class StudentAdminView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForModuleInfo.add(ModCredits, gridBagConstraints);
 
-        buttonForNextMod.setText("Create");
+        ModGrade.setText("Grade");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelForModuleInfo.add(ModGrade, gridBagConstraints);
+
+        buttonForNextMod.setText("Next");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -297,33 +319,45 @@ public class StudentAdminView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 50, 0, 0);
         panelForModuleInfo.add(buttonForNextMod, gridBagConstraints);
 
+        buttonForPrevMod.setText("Prev");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 50, 0, 0);
+        panelForModuleInfo.add(buttonForPrevMod, gridBagConstraints);
+
         jPanel2.add(panelForModuleInfo);
 
         panelForResults.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelForResults.setLayout(new java.awt.GridBagLayout());
 
-        panelForTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Result"));
+        panelForTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Result"));
 
-        jScrollPane1.setEnabled(false);
-
-        TextAreaForResults.setEditable(false);
-        TextAreaForResults.setColumns(20);
-        TextAreaForResults.setRows(5);
-        jScrollPane1.setViewportView(TextAreaForResults);
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout panelForTextAreaLayout = new javax.swing.GroupLayout(panelForTextArea);
         panelForTextArea.setLayout(panelForTextAreaLayout);
         panelForTextAreaLayout.setHorizontalGroup(
             panelForTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 234, Short.MAX_VALUE)
             .addGroup(panelForTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
+                .addGroup(panelForTextAreaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         panelForTextAreaLayout.setVerticalGroup(
             panelForTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 86, Short.MAX_VALUE)
             .addGroup(panelForTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                .addGroup(panelForTextAreaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -348,14 +382,14 @@ public class StudentAdminView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -383,21 +417,20 @@ public class StudentAdminView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAdminSysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAdminSysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAdminSysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentAdminSysView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentAdminView().setVisible(true);
+                new StudentAdminSysView().setVisible(true);
             }
         });
     }
@@ -408,22 +441,25 @@ public class StudentAdminView extends javax.swing.JFrame {
     private javax.swing.JTextField GPA;
     private javax.swing.JTextField ModCode;
     private javax.swing.JTextField ModCredits;
+    private javax.swing.JTextField ModGrade;
     private javax.swing.JTextField ModMarks;
     private javax.swing.JTextField ModName;
     private javax.swing.JTextField Name;
-    private javax.swing.JTextArea TextAreaForResults;
     private javax.swing.JTextField TextFieldForInput;
     private javax.swing.JButton buttonForExit;
     private javax.swing.JButton buttonForNextMod;
     private javax.swing.JButton buttonForNextStudent;
+    private javax.swing.JButton buttonForPrevMod;
     private javax.swing.JButton buttonForPrevStudent;
     private javax.swing.JButton buttonForSearch;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblForAdminNo;
     private javax.swing.JLabel lblForClass;
     private javax.swing.JLabel lblForCredit;
     private javax.swing.JLabel lblForGPA;
+    private javax.swing.JLabel lblForGrade;
     private javax.swing.JLabel lblForMarks;
     private javax.swing.JLabel lblForModCode;
     private javax.swing.JLabel lblForModName;
