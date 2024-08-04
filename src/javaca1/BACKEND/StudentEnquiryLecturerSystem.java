@@ -9,7 +9,15 @@ package javaca1.BACKEND;
  * @author Darren
  */
 public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
-
+    
+   private String[] searchModes = {"Name", "Class", "Admin No"};
+    private int currentMode = 0;
+    private studentGUIController controller;
+    
+    public void setController(studentGUIController controller) {
+        this.controller = controller;
+    }
+    
     /**
      * Creates new form StudentEnquiryLecturerSystem
      */
@@ -23,7 +31,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         String studentData = TxtFileReader.loadStudentData();
         textAreaForResults.setText(studentData);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +42,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         panelForTitle = new javax.swing.JPanel();
         lblForTitle = new javax.swing.JLabel();
@@ -91,14 +100,21 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         panelForSearch.setPreferredSize(new java.awt.Dimension(791, 110));
         panelForSearch.setLayout(new java.awt.GridBagLayout());
 
+        buttonGroup1.add(radioButtonForName);
         radioButtonForName.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForName.setText("Name");
+        radioButtonForName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonForNameActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 40);
         panelForSearch.add(radioButtonForName, gridBagConstraints);
 
+        buttonGroup1.add(radioButtonForClass);
         radioButtonForClass.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForClass.setText("Class");
         radioButtonForClass.addActionListener(new java.awt.event.ActionListener() {
@@ -112,8 +128,14 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 40);
         panelForSearch.add(radioButtonForClass, gridBagConstraints);
 
+        buttonGroup1.add(radioButtonForAdminNo);
         radioButtonForAdminNo.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForAdminNo.setText("Admin No");
+        radioButtonForAdminNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonForAdminNoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -123,6 +145,11 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         buttonForSearch.setBackground(new java.awt.Color(34, 40, 49));
         buttonForSearch.setForeground(new java.awt.Color(255, 255, 255));
         buttonForSearch.setText("Search");
+        buttonForSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
@@ -229,6 +256,57 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         
     }//GEN-LAST:event_radioButtonForClassActionPerformed
 
+    private void radioButtonForNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForNameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_radioButtonForNameActionPerformed
+
+    private void radioButtonForAdminNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForAdminNoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_radioButtonForAdminNoActionPerformed
+
+    private void buttonForSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForSearchActionPerformed
+        // TODO add your handling code here:
+        if (controller == null) {
+            textAreaForResults.setText("Controller is not set.");
+            return;
+        }
+
+        // Get the search text
+        String searchText = textFieldForSearch.getText().trim();
+
+        // Determine the selected search mode
+        String searchMode = getSelectedSearchMode();
+
+        // Perform the search based on the search mode
+        String results = "";
+        switch (searchMode) {
+            case "Name":
+                results = controller.searchStudentName(searchText);
+                break;
+            case "Class":
+                results = controller.searchStudentClass(searchText);
+                break;
+            case "Admin No":
+                results = controller.searchStudentAdminNo(searchText);
+                break;
+        }
+
+        // Display the results
+        textAreaForResults.setText(results);
+    }//GEN-LAST:event_buttonForSearchActionPerformed
+
+    private String getSelectedSearchMode() {
+        if (radioButtonForName.isSelected()) {
+            return "Name";
+        } else if (radioButtonForClass.isSelected()) {
+            return "Class";
+        } else if (radioButtonForAdminNo.isSelected()) {
+            return "Admin No";
+        }
+        return "Name"; // Default mode
+    }
     /**
      * @param args the command line arguments
      */
@@ -268,6 +346,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
     private javax.swing.JButton buttonForNext;
     private javax.swing.JButton buttonForPrevious;
     private javax.swing.JButton buttonForSearch;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
