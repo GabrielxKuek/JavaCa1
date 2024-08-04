@@ -8,7 +8,7 @@ package javaca1.BACKEND;
  *
  * @author Darren
  */
-public class Student {
+public class Student { 
     private String name;
     private String adminNo;
     private String studentClass;
