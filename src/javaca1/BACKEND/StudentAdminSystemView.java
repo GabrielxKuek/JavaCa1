@@ -10,7 +10,10 @@ package javaca1.BACKEND;
  */
 public class StudentAdminSystemView extends javax.swing.JFrame {
     
-     private studentGUIController controller;
+    private studentGUIController controller;
+    private static final int PAGE_SIZE = 2; // Number of items per page
+    private int currentPage = 1; // Current page
+    private String[] studentData; // Array to hold student data for pagination
     
     public void setController(studentGUIController controller) {
         this.controller = controller;
@@ -280,8 +283,41 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
 
     public void displayStudentData(){
         String studentData = TxtFileReader.loadStudentData();
-        textAreaForResults.setText(studentData);
+//        textAreaForResults.setText(studentData);
+        this.studentData = studentData.split("---------------\n"); // Assuming each student data ends with "---------------"
+        updatePage();
     }
+    
+    private void updatePage() {
+        if (studentData == null || studentData.length == 0) {
+            textAreaForResults.setText("No data available.");
+            return;
+        }
+
+        // Ensure currentPage is within valid bounds
+        if (currentPage < 1) {
+            currentPage = 1;
+        }
+        int totalPages = (studentData.length + PAGE_SIZE - 1) / PAGE_SIZE;
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+
+        int start = (currentPage - 1) * PAGE_SIZE;
+        int end = Math.min(start + PAGE_SIZE, studentData.length);
+
+        if (start >= studentData.length) {
+            textAreaForResults.setText("No more pages.");
+            return;
+        }
+
+        StringBuilder pageData = new StringBuilder();
+        for (int i = start; i < end; i++) {
+            pageData.append(studentData[i]);
+        }
+    
+        textAreaForResults.setText(pageData.toString());
+}
     
     private void radioButtonForNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForNameActionPerformed
         // TODO add your handling code here:
@@ -342,19 +378,34 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
     
     private void buttonForNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForNextActionPerformed
         // TODO add your handling code here:
+        int totalPages = (studentData.length + PAGE_SIZE - 1) / PAGE_SIZE;
+        if (currentPage < totalPages) {
+            currentPage++;
+            updatePage();
+        } else {
+            textAreaForResults.setText("You are already on the last page.");
+        }
     }//GEN-LAST:event_buttonForNextActionPerformed
 
     private void buttonForPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForPreviousActionPerformed
         // TODO add your handling code here:
+        if (currentPage > 1) {
+            currentPage--;
+            updatePage();
+        } else {
+            textAreaForResults.setText("You are already on the first page.");
+        }
     }//GEN-LAST:event_buttonForPreviousActionPerformed
 
     private void buttonForRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForRefreshActionPerformed
         // TODO add your handling code here:
         // Load student data from the file
         String studentData = TxtFileReader.loadStudentData();
+        this.studentData = studentData.split("---------------\n");
 
-        // Display the data in the JTextArea
-        textAreaForResults.setText(studentData);
+        // Reset to the first page and update the display
+        currentPage = 1;
+        updatePage();
     }//GEN-LAST:event_buttonForRefreshActionPerformed
 
     /**
