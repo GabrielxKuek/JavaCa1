@@ -15,30 +15,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TxtFileWriter {
-    public static Student[] students = StudentManagement.students;
+    // clear file
+    public static void clearFile() {
+        try {
+            // Open the file in write mode, this will clear the file
+            FileWriter fw = new FileWriter("./src/javaca1/student.txt");
+            fw.close();
+            System.out.println("File cleared successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
-    // receives input from form
-    
-    
-    // updates student array
-    
-    // rewrite student.txt based on Student[] students based on StudentManagement.java
+    // rewrite student.txt based on Student[] StudentManagement.students based on StudentManagement.java
     public static void writeStudents() {
         try {
             String tempLine = "";
             BufferedWriter writer = new BufferedWriter(new FileWriter("./src/javaca1/student.txt"));
             
-            writer.write(students.length);
+            writer.write(String.valueOf(StudentManagement.students.length));
             writer.newLine();
             
-            for (Student student : students) {
+            for (Student student : StudentManagement.students) {
+                tempLine = "";
                 tempLine += student.getClasses();
                 tempLine += ";";
                 tempLine += student.getAdminNo();
                 tempLine += ";";
                 tempLine += student.getName();
                 tempLine += ";";
-                tempLine += student.getModules_Taken().length;
+                tempLine += String.valueOf(student.getModules_Taken().length);
                 tempLine += ";";
 
                 for (Module module : student.getModules_Taken()) {
@@ -46,14 +52,16 @@ public class TxtFileWriter {
                     tempLine += ";";
                     tempLine += module.getModule_name();
                     tempLine += ";";
-                    tempLine += module.getCredit_units();
+                    tempLine += String.valueOf(module.getCredit_units());
                     tempLine += ";";
-                    tempLine += module.getStudent_marks();
+                    tempLine += String.valueOf(module.getStudent_marks());
                     tempLine += ";";
                 }
+                
+                writer.write(tempLine.toString());
+                writer.newLine();
             }
             
-            writer.write(tempLine);
             writer.close();
             
         } catch (IOException e) {
