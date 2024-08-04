@@ -28,8 +28,10 @@ public class TxtFileWriter {
             String tempLine = "";
             BufferedWriter writer = new BufferedWriter(new FileWriter("./src/javaca1/student.txt"));
             
+            writer.write(students.length);
+            writer.newLine();
+            
             for (Student student : students) {
-
                 tempLine += student.getClasses();
                 tempLine += ";";
                 tempLine += student.getAdminNo();
