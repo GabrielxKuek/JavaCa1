@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.io.*;
 
 public class TxtFileReader {
-    public void loadStudentData() {
+    public static Student[] students = StudentManagement.students;
+    
+    public static void loadStudentData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("./src/javaca1/student.txt"))) {
             String headerLine = reader.readLine();
             
@@ -52,7 +54,8 @@ public class TxtFileReader {
                     mod[i] = new Module(modCode, modName, creditUnit, modMarks);
                 }
                 Student student = new Student(studName, admNo, classes, mod);
-                System.out.println(student);
+                
+                arrayUtils.pushStudent(student);
             }
         } catch (IOException e) {
             e.printStackTrace();

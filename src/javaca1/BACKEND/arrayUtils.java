@@ -4,6 +4,8 @@
  */
 package javaca1.BACKEND;
 
+import static javaca1.BACKEND.TxtFileReader.students;
+
 /**
  *
  * @author Gabriel Kuek
@@ -69,5 +71,21 @@ public class arrayUtils {
         newArray[original_array.length] = new_element;
         
         return newArray;
+    }
+    
+    public static void pushStudent(Student pushingStudent) {
+        Student[] tempArray = new Student[students.length];
+        
+        for (int i = 0; i < students.length; i++) {
+            tempArray[i] = students[i];
+        }
+        
+        students = new Student[students.length + 1];
+        
+        for (int i = 0; i < tempArray.length; i++) {
+            students[i] = tempArray[i];
+        }
+        
+        students[tempArray.length] = pushingStudent;
     }
 }
