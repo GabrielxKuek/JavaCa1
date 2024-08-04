@@ -72,6 +72,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         panelForTitle.setBackground(new java.awt.Color(34, 40, 49));
         panelForTitle.setPreferredSize(new java.awt.Dimension(791, 80));
 
+        lblForTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblForTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblForTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblForTitle.setText("Student Enquiry System");
@@ -104,6 +105,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         panelForSearch.setPreferredSize(new java.awt.Dimension(791, 110));
         panelForSearch.setLayout(new java.awt.GridBagLayout());
 
+        radioButtonForName.setBackground(new java.awt.Color(49, 54, 63));
         buttonGroup1.add(radioButtonForName);
         radioButtonForName.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForName.setText("Name");
@@ -118,6 +120,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 40);
         panelForSearch.add(radioButtonForName, gridBagConstraints);
 
+        radioButtonForClass.setBackground(new java.awt.Color(49, 54, 63));
         buttonGroup1.add(radioButtonForClass);
         radioButtonForClass.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForClass.setText("Class");
@@ -132,6 +135,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 40);
         panelForSearch.add(radioButtonForClass, gridBagConstraints);
 
+        radioButtonForAdminNo.setBackground(new java.awt.Color(49, 54, 63));
         buttonGroup1.add(radioButtonForAdminNo);
         radioButtonForAdminNo.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForAdminNo.setText("Admin No");
