@@ -168,6 +168,11 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         buttonForNext.setBackground(new java.awt.Color(34, 40, 49));
         buttonForNext.setForeground(new java.awt.Color(255, 255, 255));
         buttonForNext.setText("Next");
+        buttonForNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForNextActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 1;
@@ -178,6 +183,11 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         buttonForPrevious.setBackground(new java.awt.Color(34, 40, 49));
         buttonForPrevious.setForeground(new java.awt.Color(255, 255, 255));
         buttonForPrevious.setText("Prev");
+        buttonForPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForPreviousActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 1;
@@ -328,6 +338,14 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         // Display the data in the JTextArea
         textAreaForResults.setText(studentData);
     }//GEN-LAST:event_buttonForRefreshActionPerformed
+
+    private void buttonForNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForNextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonForNextActionPerformed
+
+    private void buttonForPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForPreviousActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonForPreviousActionPerformed
     
     private String getSelectedSearchMode() {
         if (radioButtonForName.isSelected()) {

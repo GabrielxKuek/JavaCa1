@@ -9,12 +9,25 @@ package javaca1.BACKEND;
  * @author Darren
  */
 public class StudentAdminSystemView extends javax.swing.JFrame {
+    
+     private studentGUIController controller;
+    
+    public void setController(studentGUIController controller) {
+        this.controller = controller;
+    }
+    
+    private void initialize() {
+        studentGUIController studentController = new studentGUIController();
+        setController(studentController);
+        displayStudentData();
+    }
 
     /**
      * Creates new form StudentAdminSystemView
      */
     public StudentAdminSystemView() {
         initComponents();
+        initialize();
     }
 
     /**
@@ -27,6 +40,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         panelForTitle = new javax.swing.JPanel();
         lblForTitle = new javax.swing.JLabel();
@@ -37,6 +51,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         buttonForSearch = new javax.swing.JButton();
         buttonForNext = new javax.swing.JButton();
         buttonForPrevious = new javax.swing.JButton();
+        buttonForRefresh = new javax.swing.JButton();
         textFieldForSearch = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         panelForResults = new javax.swing.JPanel();
@@ -51,6 +66,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         panelForTitle.setBackground(new java.awt.Color(34, 40, 49));
         panelForTitle.setPreferredSize(new java.awt.Dimension(791, 80));
 
+        lblForTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblForTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblForTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblForTitle.setText("Student Admin System");
@@ -68,11 +84,11 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         );
         panelForTitleLayout.setVerticalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGap(0, 66, Short.MAX_VALUE)
             .addGroup(panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelForTitleLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -83,24 +99,45 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         panelForSearch.setPreferredSize(new java.awt.Dimension(791, 110));
         panelForSearch.setLayout(new java.awt.GridBagLayout());
 
+        radioButtonForName.setBackground(new java.awt.Color(49, 54, 63));
+        buttonGroup1.add(radioButtonForName);
         radioButtonForName.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForName.setText("Name");
+        radioButtonForName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonForNameActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 40);
         panelForSearch.add(radioButtonForName, gridBagConstraints);
 
+        radioButtonForClass.setBackground(new java.awt.Color(49, 54, 63));
+        buttonGroup1.add(radioButtonForClass);
         radioButtonForClass.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForClass.setText("Class");
+        radioButtonForClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonForClassActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 40);
         panelForSearch.add(radioButtonForClass, gridBagConstraints);
 
+        radioButtonForAdminNo.setBackground(new java.awt.Color(49, 54, 63));
+        buttonGroup1.add(radioButtonForAdminNo);
         radioButtonForAdminNo.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForAdminNo.setText("Admin No");
+        radioButtonForAdminNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonForAdminNoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -110,6 +147,11 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         buttonForSearch.setBackground(new java.awt.Color(34, 40, 49));
         buttonForSearch.setForeground(new java.awt.Color(255, 255, 255));
         buttonForSearch.setText("Search");
+        buttonForSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
@@ -120,6 +162,11 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         buttonForNext.setBackground(new java.awt.Color(34, 40, 49));
         buttonForNext.setForeground(new java.awt.Color(255, 255, 255));
         buttonForNext.setText("Next");
+        buttonForNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForNextActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 1;
@@ -130,12 +177,32 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         buttonForPrevious.setBackground(new java.awt.Color(34, 40, 49));
         buttonForPrevious.setForeground(new java.awt.Color(255, 255, 255));
         buttonForPrevious.setText("Prev");
+        buttonForPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForPreviousActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForSearch.add(buttonForPrevious, gridBagConstraints);
+
+        buttonForRefresh.setBackground(new java.awt.Color(34, 40, 49));
+        buttonForRefresh.setForeground(new java.awt.Color(255, 255, 255));
+        buttonForRefresh.setText("Refresh");
+        buttonForRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForRefreshActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelForSearch.add(buttonForRefresh, gridBagConstraints);
 
         textFieldForSearch.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -172,7 +239,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
             panelForResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelForResultsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -199,15 +266,96 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void displayStudentData(){
+        String studentData = TxtFileReader.loadStudentData();
+        textAreaForResults.setText(studentData);
+    }
+    
+    private void radioButtonForNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForNameActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_radioButtonForNameActionPerformed
+
+    private void radioButtonForClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForClassActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_radioButtonForClassActionPerformed
+
+    private void radioButtonForAdminNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForAdminNoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_radioButtonForAdminNoActionPerformed
+
+    private void buttonForSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForSearchActionPerformed
+        // TODO add your handling code here:
+        if (controller == null) {
+            textAreaForResults.setText("Controller is not set.");
+            return;
+        }
+
+        // Get the search text
+        String searchText = textFieldForSearch.getText().trim();
+
+        // Determine the selected search mode
+        String searchMode = getSelectedSearchMode();
+
+        // Perform the search based on the search mode
+        String results = "";
+        switch (searchMode) {
+            case "Name":
+            results = controller.searchStudentName(searchText);
+            break;
+            case "Class":
+            results = controller.searchStudentClass(searchText);
+            break;
+            case "Admin No":
+            results = controller.searchStudentAdminNo(searchText);
+            break;
+        }
+
+        // Display the results
+        textAreaForResults.setText(results);
+    }//GEN-LAST:event_buttonForSearchActionPerformed
+
+        private String getSelectedSearchMode() {
+        if (radioButtonForName.isSelected()) {
+            return "Name";
+        } else if (radioButtonForClass.isSelected()) {
+            return "Class";
+        } else if (radioButtonForAdminNo.isSelected()) {
+            return "Admin No";
+        }
+        return "Name"; // Default mode
+    }
+    
+    private void buttonForNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForNextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonForNextActionPerformed
+
+    private void buttonForPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForPreviousActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonForPreviousActionPerformed
+
+    private void buttonForRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForRefreshActionPerformed
+        // TODO add your handling code here:
+        // Load student data from the file
+        String studentData = TxtFileReader.loadStudentData();
+
+        // Display the data in the JTextArea
+        textAreaForResults.setText(studentData);
+    }//GEN-LAST:event_buttonForRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +395,9 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonForNext;
     private javax.swing.JButton buttonForPrevious;
+    private javax.swing.JButton buttonForRefresh;
     private javax.swing.JButton buttonForSearch;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
