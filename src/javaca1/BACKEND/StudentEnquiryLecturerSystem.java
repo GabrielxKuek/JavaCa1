@@ -15,6 +15,13 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
      */
     public StudentEnquiryLecturerSystem() {
         initComponents();
+        
+        displayStudentData();
+    }
+    
+    public void displayStudentData(){
+        String studentData = TxtFileReader.loadStudentData();
+        textAreaForResults.setText(studentData);
     }
 
     /**
@@ -219,6 +226,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
 
     private void radioButtonForClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForClassActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_radioButtonForClassActionPerformed
 
     /**
