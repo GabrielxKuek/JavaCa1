@@ -37,7 +37,7 @@ public class studentGUIController {
                             module.getCredit_units(),
                             grade));
                 }
-                nameResults.append(String.format("%.2f", student.calculateGPA()));
+                nameResults.append(String.format("GPA: %.2f\n", student.calculateGPA()));
                 found = true;
                 break;
             }
@@ -76,7 +76,7 @@ public class studentGUIController {
                             module.getCredit_units(),
                             grade));
                 }
-                classResults.append(String.format("%.2f\n", student.calculateGPA()));
+                classResults.append(String.format("GPA: %.2f\n", student.calculateGPA()));
                 classResults.append("--------------\n");
                 count++;
                 totalGPA += student.calculateGPA();
@@ -116,7 +116,7 @@ public class studentGUIController {
                             module.getCredit_units(),
                             grade));
                 }
-                adminNoResults.append(String.format("%.2f\n", student.calculateGPA()));
+                adminNoResults.append(String.format("GPA: %.2f\n", student.calculateGPA()));
                 adminNoResults.append("---------------\n");
                 found = true;
                 break;
