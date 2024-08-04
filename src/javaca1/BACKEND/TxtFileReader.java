@@ -14,15 +14,19 @@ import java.io.IOException;
 import java.io.*;
 
 public class TxtFileReader {
-    private final String filePath = "C:\\Users\\Darren\\OneDrive\\Desktop\\JPRG\\Coding\\JavaCA1\\src\\javaca1\\student.txt"; // Update with your actual file name
-
     public void loadStudentData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("./src/javaca1/student.txt"))) {
+            String headerLine = reader.readLine();
+            
+            if(headerLine != null){
+                System.out.println(headerLine);
+            }
+            
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
                 
-                if(parts.length < 5){
+                if(parts.length < 4){
                     System.err.println("Invalid data format: "+ line);
                     continue;
                 }
@@ -36,7 +40,7 @@ public class TxtFileReader {
                 int index = 4;
                 
                 for(int i = 0; i < modNo; i++){
-                    if(index+3 < parts.length){
+                    if(index+3 > parts.length){
                         System.err.print("Invalid data format: "+ line);
                         break;
                     }
@@ -47,7 +51,7 @@ public class TxtFileReader {
                 
                     mod[i] = new Module(modCode, modName, creditUnit, modMarks);
                 }
-                Student student = new Student(studName, classes, admNo, mod);
+                Student student = new Student(studName, admNo, classes, mod);
                 System.out.println(student);
             }
         } catch (IOException e) {
