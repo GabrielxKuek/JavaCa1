@@ -19,6 +19,7 @@ public class TxtFileReader {
     public static String loadStudentData() {
         StringBuilder message = new StringBuilder();
         int moduleCount = 0;
+        int studentCount = 1;
         
         try (BufferedReader reader = new BufferedReader(new FileReader("./src/javaca1/student.txt"))) {
             String headerLine = reader.readLine();
@@ -60,6 +61,7 @@ public class TxtFileReader {
                 
                 arrayUtils.pushStudent(student);
                 
+                message.append(String.format("Student %s:\n", studentCount++));
                 message.append("Name: ").append(student.getName()).append("\n");
                 message.append("Admin Number: ").append(student.getAdminNo()).append("\n");
                 message.append("Class: ").append(student.getClasses()).append("\n");

@@ -10,14 +10,8 @@ package javaca1.BACKEND;
  */
 public class Main {
     public static void main(String[] arg){
-//        FoodMenuModel model = new FoodMenuModel();
-//        FoodMenuView view = new FoodMenuView();
-//        FoodMenuController controller = new FoodMenuController(model, view);
-//        
-//        view.setController(controller);
-//        //
-//        controller.run();
-//        
-//        view.setVisible(true);
+        StudentEnquiryLecturerSystem view = new StudentEnquiryLecturerSystem();
+        
+        view.setVisible(true);
     }
 }
