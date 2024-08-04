@@ -94,6 +94,11 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
 
         radioButtonForClass.setForeground(new java.awt.Color(255, 255, 255));
         radioButtonForClass.setText("Class");
+        radioButtonForClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonForClassActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -211,6 +216,10 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void radioButtonForClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForClassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioButtonForClassActionPerformed
 
     /**
      * @param args the command line arguments
