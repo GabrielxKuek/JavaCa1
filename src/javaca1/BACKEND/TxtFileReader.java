@@ -16,7 +16,10 @@ import java.io.*;
 public class TxtFileReader {
     public static Student[] students = StudentManagement.students;
     
-    public static void loadStudentData() {
+    public static String loadStudentData() {
+        StringBuilder message = new StringBuilder();
+        int moduleCount = 0;
+        
         try (BufferedReader reader = new BufferedReader(new FileReader("./src/javaca1/student.txt"))) {
             String headerLine = reader.readLine();
             
@@ -56,14 +59,31 @@ public class TxtFileReader {
                 Student student = new Student(studName, admNo, classes, mod);
                 
                 arrayUtils.pushStudent(student);
+                
+                message.append("Name: ").append(student.getName()).append("\n");
+                message.append("Admin Number: ").append(student.getAdminNo()).append("\n");
+                message.append("Class: ").append(student.getClasses()).append("\n");
+                message.append("Modules Taken: \n");
+                
+                for(Module module : student.getModules_Taken()){
+                    moduleCount++;
+                    
+                    double marks = module.getStudent_marks();
+                    
+                    MarksGrade grade = MarksGrade.getGrade(marks);
+                    
+                    message.append(String.format("%s: %s/%s/%s: %s\n",
+                            moduleCount,
+                            module.getModule_cd(),
+                            module.getModule_name(),
+                            module.getCredit_units(),
+                            grade));
+                }
+                message.append("---------------\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    public static void main(String[] args){
-        TxtFileReader reader = new TxtFileReader();
-        reader.loadStudentData();
+        return message.toString();
     }
 }
