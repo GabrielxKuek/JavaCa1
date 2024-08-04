@@ -16,14 +16,14 @@ public class studentGUIController {
         boolean found = false;
         StringBuilder nameResults = new StringBuilder();
         
-        for(Student students : StudentManagement.students){
-            if(students.getName().equalsIgnoreCase(name)){
-                nameResults.append("Name: ").append(students.getName()).append("\n");
-                nameResults.append("Admin Number: ").append(students.getAdminNo()).append("\n");
-                nameResults.append("Class: ").append(students.getClasses()).append("\n");
+        for(Student student : TxtFileReader.students){
+            if(student.getName().equalsIgnoreCase(name)){
+                nameResults.append("Name: ").append(student.getName()).append("\n");
+                nameResults.append("Admin Number: ").append(student.getAdminNo()).append("\n");
+                nameResults.append("Class: ").append(student.getClasses()).append("\n");
                 nameResults.append("Modules Taken: \n");
                 
-                for(Module module : students.getModules_Taken()){
+                for(Module module : student.getModules_Taken()){
                     moduleCount++;
                     
                     double marks = module.getStudent_marks();
@@ -37,7 +37,7 @@ public class studentGUIController {
                             module.getCredit_units(),
                             grade));
                 }
-                nameResults.append("GPA: ").append(students.calculateGPA()).append("\n");
+                nameResults.append(String.format("%.2f", student.calculateGPA()));
                 found = true;
                 break;
             }
@@ -55,7 +55,7 @@ public class studentGUIController {
         double totalGPA = 0.0;
         StringBuilder classResults = new StringBuilder();
         
-        for(Student student : StudentManagement.students){
+        for(Student student : TxtFileReader.students){
             if(student.getClasses().equalsIgnoreCase(classInput)){
                 classResults.append("Name: ").append(student.getName()).append("\n");
                 classResults.append("Admin Number: ").append(student.getAdminNo()).append("\n");
@@ -76,7 +76,7 @@ public class studentGUIController {
                             module.getCredit_units(),
                             grade));
                 }
-                classResults.append("GPA: ").append(student.calculateGPA()).append("\n");
+                classResults.append(String.format("%.2f\n", student.calculateGPA()));
                 classResults.append("--------------\n");
                 count++;
                 totalGPA += student.calculateGPA();
@@ -95,7 +95,7 @@ public class studentGUIController {
         boolean found = false;
         int moduleCount = 0;
         
-        for(Student student : StudentManagement.students){
+        for(Student student : TxtFileReader.students){
             if(student.getAdminNo().equalsIgnoreCase(adminNoInput)){
                 adminNoResults.append("Name: ").append(student.getName()).append("\n");
                 adminNoResults.append("Admin Number: ").append(student.getAdminNo()).append("\n");
@@ -116,7 +116,7 @@ public class studentGUIController {
                             module.getCredit_units(),
                             grade));
                 }
-                adminNoResults.append("GPA: ").append(student.calculateGPA()).append("\n");
+                adminNoResults.append(String.format("%.2f\n", student.calculateGPA()));
                 adminNoResults.append("---------------\n");
                 found = true;
                 break;

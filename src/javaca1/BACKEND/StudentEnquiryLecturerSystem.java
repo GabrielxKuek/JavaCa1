@@ -10,12 +10,16 @@ package javaca1.BACKEND;
  */
 public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
     
-   private String[] searchModes = {"Name", "Class", "Admin No"};
-    private int currentMode = 0;
     private studentGUIController controller;
     
     public void setController(studentGUIController controller) {
         this.controller = controller;
+    }
+    
+    private void initialize() {
+        studentGUIController studentController = new studentGUIController();
+        setController(studentController);
+        displayStudentData();
     }
     
     /**
@@ -23,8 +27,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
      */
     public StudentEnquiryLecturerSystem() {
         initComponents();
-        
-        displayStudentData();
+        initialize();
     }
     
     public void displayStudentData(){
@@ -53,6 +56,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         buttonForSearch = new javax.swing.JButton();
         buttonForNext = new javax.swing.JButton();
         buttonForPrevious = new javax.swing.JButton();
+        buttonForRefresh = new javax.swing.JButton();
         textFieldForSearch = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         panelForResults = new javax.swing.JPanel();
@@ -177,6 +181,21 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForSearch.add(buttonForPrevious, gridBagConstraints);
 
+        buttonForRefresh.setBackground(new java.awt.Color(34, 40, 49));
+        buttonForRefresh.setForeground(new java.awt.Color(255, 255, 255));
+        buttonForRefresh.setText("Refresh");
+        buttonForRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForRefreshActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelForSearch.add(buttonForRefresh, gridBagConstraints);
+
         textFieldForSearch.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -297,6 +316,15 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         textAreaForResults.setText(results);
     }//GEN-LAST:event_buttonForSearchActionPerformed
 
+    private void buttonForRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForRefreshActionPerformed
+        // TODO add your handling code here:
+        // Load student data from the file
+        String studentData = TxtFileReader.loadStudentData();
+    
+        // Display the data in the JTextArea
+        textAreaForResults.setText(studentData);
+    }//GEN-LAST:event_buttonForRefreshActionPerformed
+    
     private String getSelectedSearchMode() {
         if (radioButtonForName.isSelected()) {
             return "Name";
@@ -345,6 +373,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonForNext;
     private javax.swing.JButton buttonForPrevious;
+    private javax.swing.JButton buttonForRefresh;
     private javax.swing.JButton buttonForSearch;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
