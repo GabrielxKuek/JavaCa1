@@ -81,7 +81,7 @@ public class TxtFileReader {
                             module.getCredit_units(),
                             grade));
                 }
-                message.append("---------------\n");
+                message.append("---------------\n\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
