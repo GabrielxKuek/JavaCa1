@@ -24,6 +24,10 @@ public class Student {
         this.modules_taken = modules;
     }
     
+    public Student(String name, String adminNo, String studentClass) {
+        this(name, adminNo, studentClass, new Module[0]);
+    }
+    
     public Student(String username, String password){
         this.username = username;
         this.password = password;

@@ -13,10 +13,6 @@ public class StudentManagement {
     
     //Student objects
     public static Student[] students = {
-        new Student("John Tan", "p2312333", "DIT/FT/2A/01", new Module[] {
-            new Module("ST0509", "JPRG", 4, 85),
-            new Module("ST0503", "FOP", 5, 75)
-        })
     };
     
     //Add new Students
