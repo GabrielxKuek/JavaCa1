@@ -20,15 +20,43 @@ public class TxtFileReader {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line); // Print each line of the file
+                String[] parts = line.split(";");
+                
+                if(parts.length < 5){
+                    System.err.println("Invalid data format: "+ line);
+                    continue;
+                }
+                
+                String classes = parts[0];
+                String admNo = parts[1];
+                String studName = parts[2];
+                int modNo = Integer.parseInt(parts[3]);
+                
+                Module[] mod = new Module[modNo];
+                int index = 4;
+                
+                for(int i = 0; i < modNo; i++){
+                    if(index+3 < parts.length){
+                        System.err.print("Invalid data format: "+ line);
+                        break;
+                    }
+                    String modCode = parts[index++];
+                    String modName = parts[index++];
+                    int creditUnit = Integer.parseInt(parts[index++]);
+                    double modMarks = Double.parseDouble(parts[index++]);
+                
+                    mod[i] = new Module(modCode, modName, creditUnit, modMarks);
+                }
+                Student student = new Student(studName, classes, admNo, mod);
+                System.out.println(student);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TxtFileReader reader = new TxtFileReader();
-        reader.loadStudentData(); // Call the method to test
+        reader.loadStudentData();
     }
 }

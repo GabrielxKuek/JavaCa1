@@ -108,4 +108,17 @@ public class Student {
         }
     }
     
+//        @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("Student{name='").append(name).append('\'')
+//          .append(", adminNo='").append(adminNo).append('\'')
+//          .append(", studentClass='").append(studentClass).append('\'')
+//          .append(", modules_taken=[");
+//        for (Module module : modules_taken) {
+//            sb.append(module).append(", ");
+//        }
+//        sb.append("]}");
+//        return sb.toString();
+//    }
 }
