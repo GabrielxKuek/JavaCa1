@@ -14,14 +14,21 @@ import java.io.IOException;
 import java.io.*;
 
 public class TxtFileReader {
-        private final String studentsFile = "student.txt";
-    
-    public void loadStudentData(){
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("student.txt"));
-            System.out.println(reader.readLine());
-        }catch(IOException e){
+    private final String filePath = "C:\\Users\\Darren\\OneDrive\\Desktop\\JPRG\\Coding\\JavaCA1\\src\\javaca1\\student.txt"; // Update with your actual file name
+
+    public void loadStudentData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line); // Print each line of the file
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void main(String[] args) {
+        TxtFileReader reader = new TxtFileReader();
+        reader.loadStudentData(); // Call the method to test
     }
 }
