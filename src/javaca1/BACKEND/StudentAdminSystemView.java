@@ -4,6 +4,9 @@
  */
 package javaca1.BACKEND;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Darren
@@ -51,6 +54,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         buttonForSearch = new javax.swing.JButton();
         buttonForNext = new javax.swing.JButton();
         buttonForPrevious = new javax.swing.JButton();
+        adminButton = new javax.swing.JButton();
         buttonForRefresh = new javax.swing.JButton();
         textFieldForSearch = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -75,21 +79,17 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         panelForTitle.setLayout(panelForTitleLayout);
         panelForTitleLayout.setHorizontalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 834, Short.MAX_VALUE)
-            .addGroup(panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelForTitleLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(panelForTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelForTitleLayout.setVerticalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-            .addGroup(panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelForTitleLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(panelForTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel1.add(panelForTitle);
@@ -188,6 +188,17 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelForSearch.add(buttonForPrevious, gridBagConstraints);
+
+        adminButton.setText("Functions");
+        adminButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminButtonMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        panelForSearch.add(adminButton, gridBagConstraints);
 
         buttonForRefresh.setBackground(new java.awt.Color(34, 40, 49));
         buttonForRefresh.setForeground(new java.awt.Color(255, 255, 255));
@@ -357,6 +368,14 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         textAreaForResults.setText(studentData);
     }//GEN-LAST:event_buttonForRefreshActionPerformed
 
+    private void adminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminButtonMouseClicked
+        // TODO add your handling code here:
+        createPanel poop = new createPanel(1);
+        poop.show();
+        
+        dispose();
+    }//GEN-LAST:event_adminButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +412,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adminButton;
     private javax.swing.JButton buttonForNext;
     private javax.swing.JButton buttonForPrevious;
     private javax.swing.JButton buttonForRefresh;

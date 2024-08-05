@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,21 +46,61 @@ public class createPanel extends javax.swing.JFrame {
     private JLabel moduleCreditUnitLabel;
     private JTextField moduleCreditUnitInput;
     
+    // Delete Student
+    private JLabel deleteAdminNumberLabel;
+    private JTextField deleteAdminNumberInput;
+    
     // hashmap key
     private String currentKey = "";
 
     // hashmap of actions
     HashMap<String, ActionListener> actions = new HashMap<>();
     
+    // poop
+    JButton poopButton = new JButton("Poop Button");
+
+    // Create a sample MouseEvent
+    MouseEvent poop = new MouseEvent(
+        poopButton,              // Source component
+        MouseEvent.MOUSE_CLICKED, // Event ID
+        System.currentTimeMillis(), // Event time
+        0,                   // Modifiers (e.g., Ctrl, Shift)
+        50,                  // X coordinate of the mouse cursor
+        100,                 // Y coordinate of the mouse cursor
+        1,                   // Click count
+        false                // Popup trigger
+    );
+    
     /**
      * Creates new form createPanel
      */
-    public createPanel() {
+    
+    public createPanel(int selection, MouseEvent evt) {
         initComponents();
 //        initContentPanel();
         initActions();
+        
+        switch(selection) {
+            case 1:
+                createModuleSideNavMouseClicked(evt);
+            case 2:
+                createModuleSideNavMouseClicked(evt);
+        }
     }
 
+    
+    public createPanel(int selection) {
+        initComponents();
+//        initContentPanel();
+        initActions();
+        
+        switch(selection) {
+            case 1:
+                createModuleSideNavMouseClicked(poop);
+            case 2:
+                createModuleSideNavMouseClicked(poop);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +110,42 @@ public class createPanel extends javax.swing.JFrame {
     
     // define actions
     private void initActions() {
+    
+        actions.put("deleteStudent", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // delete student
+                int iterations = 0;
+                
+                for (Student student : StudentManagement.students) {
+                    if (student.getAdminNo().equals(deleteAdminNumberInput.getText())) {
+                        StudentManagement.students = arrayUtils.removeStudentElementByIndex(StudentManagement.students, iterations);
+
+                        JOptionPane.showMessageDialog(null,
+                                "Student deleted!",
+                                "Success!",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+
+                        break;
+
+                    } else if (iterations == StudentManagement.students.length - 1) {
+                        JOptionPane.showMessageDialog(null,
+                                "Student not found!",
+                                "Oh no!",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
+
+                    iterations++;
+                }
+                
+                // write into student.txt
+                TxtFileWriter.writeStudents();
+//                System.out.println("student test");
+            }
+        });
+
         // create student action
         actions.put("createStudent", new ActionListener() {
             @Override
@@ -165,6 +242,8 @@ public class createPanel extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         topNav = new javax.swing.JPanel();
+        panelForTitle = new javax.swing.JPanel();
+        lblForTitle = new javax.swing.JLabel();
         content1 = new javax.swing.JPanel();
         form1 = new javax.swing.JPanel();
         createHeader1 = new javax.swing.JPanel();
@@ -176,6 +255,7 @@ public class createPanel extends javax.swing.JFrame {
         dashboardSideNav = new javax.swing.JButton();
         createStudentSideNav = new javax.swing.JButton();
         createModuleSideNav = new javax.swing.JButton();
+        deleteStudentButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,15 +264,50 @@ public class createPanel extends javax.swing.JFrame {
         topNav.setBackground(new java.awt.Color(34, 40, 49));
         topNav.setPreferredSize(new java.awt.Dimension(785, 50));
 
+        panelForTitle.setBackground(new java.awt.Color(34, 40, 49));
+        panelForTitle.setPreferredSize(new java.awt.Dimension(791, 80));
+
+        lblForTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblForTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblForTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblForTitle.setText("Student Admin System");
+
+        javax.swing.GroupLayout panelForTitleLayout = new javax.swing.GroupLayout(panelForTitle);
+        panelForTitle.setLayout(panelForTitleLayout);
+        panelForTitleLayout.setHorizontalGroup(
+            panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelForTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelForTitleLayout.setVerticalGroup(
+            panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelForTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout topNavLayout = new javax.swing.GroupLayout(topNav);
         topNav.setLayout(topNavLayout);
         topNavLayout.setHorizontalGroup(
             topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addGap(0, 834, Short.MAX_VALUE)
+            .addGroup(topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(topNavLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelForTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         topNavLayout.setVerticalGroup(
             topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(topNavLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelForTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         content1.setOpaque(false);
@@ -319,6 +434,13 @@ public class createPanel extends javax.swing.JFrame {
             }
         });
 
+        deleteStudentButton.setText("Delete Student");
+        deleteStudentButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteStudentButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout sideNavLayout = new javax.swing.GroupLayout(sideNav);
         sideNav.setLayout(sideNavLayout);
         sideNavLayout.setHorizontalGroup(
@@ -330,6 +452,11 @@ public class createPanel extends javax.swing.JFrame {
                     .addComponent(createStudentSideNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createModuleSideNav, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(sideNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideNavLayout.createSequentialGroup()
+                    .addContainerGap(18, Short.MAX_VALUE)
+                    .addComponent(deleteStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         sideNavLayout.setVerticalGroup(
             sideNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,13 +468,18 @@ public class createPanel extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(createModuleSideNav)
                 .addContainerGap(213, Short.MAX_VALUE))
+            .addGroup(sideNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideNavLayout.createSequentialGroup()
+                    .addContainerGap(136, Short.MAX_VALUE)
+                    .addComponent(deleteStudentButton)
+                    .addContainerGap(177, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(topNav, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+            .addComponent(topNav, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(content1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -484,6 +616,33 @@ public class createPanel extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_submitButtonMouseClicked
 
+    private void deleteStudentButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteStudentButtonMouseClicked
+        // TODO add your handling code here:
+        // set header text
+        functionTitle.setText("Delete Student");
+        
+        // set submit button text
+        submitButton.setText("Delete");
+        
+        // config global key
+        currentKey = "deleteStudent";
+        
+        // clear form
+        contentPanel.removeAll();
+        contentPanel.repaint();
+        
+        // add components
+        deleteAdminNumberLabel = new JLabel("Student Admin Number: ");
+        deleteAdminNumberInput = new JTextField();
+        
+        contentPanel.add(deleteAdminNumberLabel);
+        contentPanel.add(deleteAdminNumberInput);
+        
+        // apply changes
+        contentPanel.revalidate();
+        contentPanel.repaint();
+    }//GEN-LAST:event_deleteStudentButtonMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -515,7 +674,7 @@ public class createPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createPanel().setVisible(true);
+                new createPanel(1).setVisible(true);
             }
         });
     }
@@ -531,10 +690,13 @@ public class createPanel extends javax.swing.JFrame {
     private javax.swing.JButton createModuleSideNav;
     private javax.swing.JButton createStudentSideNav;
     private javax.swing.JButton dashboardSideNav;
+    private javax.swing.JButton deleteStudentButton;
     private javax.swing.JPanel form;
     private javax.swing.JPanel form1;
     private javax.swing.JLabel functionTitle;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblForTitle;
+    private javax.swing.JPanel panelForTitle;
     private javax.swing.JPanel sideNav;
     private javax.swing.JButton submitButton;
     private javax.swing.JPanel topNav;
