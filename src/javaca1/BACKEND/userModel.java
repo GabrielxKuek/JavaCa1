@@ -6,7 +6,7 @@ package javaca1.BACKEND;
 
 /**
  *
- * @author Gabriel Kuek
+ * @author Gabriel Kuek, DITFT2A01, p2323220 & Wong Hong Chee, DIT/FT/2A/01, p2323543
  */
 public class userModel {
     // methods for userModel to work

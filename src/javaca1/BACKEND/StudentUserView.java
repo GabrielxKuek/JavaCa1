@@ -6,7 +6,7 @@ package javaca1.FRONTEND;
 
 /**
  *
- * @author Darren
+ * @author Wong Hong Chee, DIT/FT/2A/01, p2323543
  */
 public class StudentUserView extends javax.swing.JFrame {
 

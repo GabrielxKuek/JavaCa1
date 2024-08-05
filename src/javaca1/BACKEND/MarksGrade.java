@@ -6,7 +6,7 @@ package javaca1.BACKEND;
 
 /**
  *
- * @author Darren
+ * @author Gabriel Kuek, DITFT2A01, p2323220
  */
 public enum MarksGrade {
     A(4.0, 80),

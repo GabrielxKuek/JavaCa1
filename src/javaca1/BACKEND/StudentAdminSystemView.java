@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Darren
+ * @author Gabriel Kuek, DITFT2A01, p2323220
  */
 public class StudentAdminSystemView extends javax.swing.JFrame {
     
