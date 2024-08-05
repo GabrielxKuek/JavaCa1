@@ -77,6 +77,7 @@ private void updatePage() {
         jPanel1 = new javax.swing.JPanel();
         panelForTitle = new javax.swing.JPanel();
         lblForTitle = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JButton();
         panelForSearch = new javax.swing.JPanel();
         radioButtonForName = new javax.swing.JRadioButton();
         radioButtonForClass = new javax.swing.JRadioButton();
@@ -105,11 +106,21 @@ private void updatePage() {
         lblForTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblForTitle.setText("Student Enquiry System");
 
+        logoutButton.setText("logout");
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelForTitleLayout = new javax.swing.GroupLayout(panelForTitle);
         panelForTitle.setLayout(panelForTitleLayout);
         panelForTitleLayout.setHorizontalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 791, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelForTitleLayout.createSequentialGroup()
+                .addContainerGap(713, Short.MAX_VALUE)
+                .addComponent(logoutButton)
+                .addContainerGap())
             .addGroup(panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelForTitleLayout.createSequentialGroup()
                     .addContainerGap()
@@ -118,7 +129,10 @@ private void updatePage() {
         );
         panelForTitleLayout.setVerticalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelForTitleLayout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(logoutButton)
+                .addGap(26, 26, 26))
             .addGroup(panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelForTitleLayout.createSequentialGroup()
                     .addContainerGap()
@@ -390,6 +404,15 @@ private void updatePage() {
     }
     }//GEN-LAST:event_buttonForPreviousActionPerformed
 
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        // TODO add your handling code here:
+        LoginView asd = new LoginView();
+        
+        asd.show();
+        
+        dispose();
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
     private String getSelectedSearchMode() {
         if (radioButtonForName.isSelected()) {
             return "Name";
@@ -445,6 +468,7 @@ private void updatePage() {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblForTitle;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JPanel panelForResults;
     private javax.swing.JPanel panelForSearch;
     private javax.swing.JPanel panelForTitle;

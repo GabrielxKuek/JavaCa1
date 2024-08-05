@@ -50,6 +50,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         panelForTitle = new javax.swing.JPanel();
         lblForTitle = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JButton();
         panelForSearch = new javax.swing.JPanel();
         radioButtonForName = new javax.swing.JRadioButton();
         radioButtonForClass = new javax.swing.JRadioButton();
@@ -78,20 +79,31 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         lblForTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblForTitle.setText("Student Admin System");
 
+        logoutButton.setText("logout");
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelForTitleLayout = new javax.swing.GroupLayout(panelForTitle);
         panelForTitle.setLayout(panelForTitleLayout);
         panelForTitleLayout.setHorizontalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelForTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logoutButton)
+                .addGap(28, 28, 28))
         );
         panelForTitleLayout.setVerticalGroup(
             panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelForTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGroup(panelForTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblForTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(logoutButton))
                 .addContainerGap())
         );
 
@@ -253,7 +265,7 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
             panelForResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelForResultsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -418,6 +430,15 @@ private void updatePage() {
         dispose();
     }//GEN-LAST:event_adminButtonMouseClicked
 
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        // TODO add your handling code here:
+        LoginView asd = new LoginView();
+        
+        asd.show();
+        
+        dispose();
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -464,6 +485,7 @@ private void updatePage() {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblForTitle;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JPanel panelForResults;
     private javax.swing.JPanel panelForSearch;
     private javax.swing.JPanel panelForTitle;

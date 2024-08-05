@@ -4,6 +4,8 @@
  */
 package javaca1.BACKEND;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gabriel Kuek
@@ -32,6 +34,7 @@ public class LoginView extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         usernameInput = new javax.swing.JTextField();
         passwordInput = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +86,19 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(passwordInput, gridBagConstraints);
 
+        jButton1.setText("Login");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,6 +126,53 @@ public class LoginView extends javax.swing.JFrame {
     private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordInputActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        User tempUser = new User();
+        tempUser.setUsername(usernameInput.getText());
+        tempUser.setPassword(passwordInput.getText());
+        
+        if (userController.checkUserLogin(tempUser)) {
+            // if user records exist
+            JOptionPane.showMessageDialog(null,
+                "Login Successful!",
+                "Success!",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            // if user is illegal
+            JOptionPane.showMessageDialog(null,
+                "Incorrect credentials. Please try again!",
+                "Error!",
+                JOptionPane.ERROR_MESSAGE);
+
+            return;
+        }
+
+        // displays the appropriate menu based on user account information
+        if (!userController.checkUserType(tempUser)) {
+            // if user is not admin
+            StudentEnquiryLecturerSystem asd = new StudentEnquiryLecturerSystem();
+            
+            asd.show();
+            
+            dispose();
+
+        } else if (userController.checkUserType(tempUser)) {
+            // if user is admin
+            StudentAdminSystemView asd = new StudentAdminSystemView();
+            asd.show();
+            
+            dispose();
+
+        }
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -147,6 +210,7 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField passwordInput;
     private javax.swing.JLabel passwordLabel;
