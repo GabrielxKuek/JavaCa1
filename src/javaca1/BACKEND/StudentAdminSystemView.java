@@ -281,42 +281,33 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void displayStudentData(){
-        String studentData = TxtFileReader.loadStudentData();
-//        textAreaForResults.setText(studentData);
-        this.studentData = studentData.split("---------------\n"); // Assuming each student data ends with "---------------"
-        updatePage();
+public void displayStudentData() {
+    String studentData = TxtFileReader.loadStudentData();
+    // Split data into pages
+    this.studentData = studentData.split("---------------\n"); // Assuming each student data ends with "---------------"
+    updatePage();
+}
+    
+private void updatePage() {
+    if (studentData == null || studentData.length == 0) {
+        textAreaForResults.setText("No data available.");
+        return;
     }
     
-    private void updatePage() {
-        if (studentData == null || studentData.length == 0) {
-            textAreaForResults.setText("No data available.");
-            return;
-        }
+    int start = (currentPage - 1) * PAGE_SIZE;
+    int end = Math.min(start + PAGE_SIZE, studentData.length);
 
-        // Ensure currentPage is within valid bounds
-        if (currentPage < 1) {
-            currentPage = 1;
-        }
-        int totalPages = (studentData.length + PAGE_SIZE - 1) / PAGE_SIZE;
-        if (currentPage > totalPages) {
-            currentPage = totalPages;
-        }
+    if (start >= studentData.length) {
+        textAreaForResults.setText("No more pages.");
+        return;
+    }
 
-        int start = (currentPage - 1) * PAGE_SIZE;
-        int end = Math.min(start + PAGE_SIZE, studentData.length);
-
-        if (start >= studentData.length) {
-            textAreaForResults.setText("No more pages.");
-            return;
-        }
-
-        StringBuilder pageData = new StringBuilder();
-        for (int i = start; i < end; i++) {
-            pageData.append(studentData[i]);
-        }
+    StringBuilder pageData = new StringBuilder();
+    for (int i = start; i < end; i++) {
+        pageData.append(studentData[i]);
+    }
     
-        textAreaForResults.setText(pageData.toString());
+    textAreaForResults.setText(pageData.toString());
 }
     
     private void radioButtonForNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonForNameActionPerformed
@@ -351,21 +342,21 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
         String results = "";
         switch (searchMode) {
             case "Name":
-            results = controller.searchStudentName(searchText);
-            break;
+                results = controller.searchStudentName(searchText);
+                break;
             case "Class":
-            results = controller.searchStudentClass(searchText);
-            break;
+                results = controller.searchStudentClass(searchText);
+                break;
             case "Admin No":
-            results = controller.searchStudentAdminNo(searchText);
-            break;
+                results = controller.searchStudentAdminNo(searchText);
+                break;
         }
 
         // Display the results
         textAreaForResults.setText(results);
     }//GEN-LAST:event_buttonForSearchActionPerformed
 
-        private String getSelectedSearchMode() {
+    private String getSelectedSearchMode() {
         if (radioButtonForName.isSelected()) {
             return "Name";
         } else if (radioButtonForClass.isSelected()) {
@@ -377,35 +368,35 @@ public class StudentAdminSystemView extends javax.swing.JFrame {
     }
     
     private void buttonForNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForNextActionPerformed
-        // TODO add your handling code here:
-        int totalPages = (studentData.length + PAGE_SIZE - 1) / PAGE_SIZE;
-        if (currentPage < totalPages) {
-            currentPage++;
-            updatePage();
-        } else {
-            textAreaForResults.setText("You are already on the last page.");
-        }
+    if (studentData != null && (currentPage * PAGE_SIZE) < studentData.length) {
+        currentPage++;
+        updatePage();
+    } else {
+        textAreaForResults.setText("No more pages.");
+    }   
     }//GEN-LAST:event_buttonForNextActionPerformed
 
     private void buttonForPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForPreviousActionPerformed
-        // TODO add your handling code here:
-        if (currentPage > 1) {
-            currentPage--;
-            updatePage();
-        } else {
-            textAreaForResults.setText("You are already on the first page.");
-        }
+    if (currentPage > 1) {
+        currentPage--;
+        updatePage();
+    } else {
+        textAreaForResults.setText("You are already on the first page.");
+    }
     }//GEN-LAST:event_buttonForPreviousActionPerformed
 
     private void buttonForRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForRefreshActionPerformed
-        // TODO add your handling code here:
-        // Load student data from the file
-        String studentData = TxtFileReader.loadStudentData();
-        this.studentData = studentData.split("---------------\n");
-
-        // Reset to the first page and update the display
-        currentPage = 1;
-        updatePage();
+    // Load student data from the file
+    String studentData = TxtFileReader.loadStudentData();
+    
+    // Split the data into pages
+    this.studentData = studentData.split("---------------\n");
+    
+    // Reset to the first page
+    this.currentPage = 1;
+    
+    // Update the displayed page
+    updatePage();
     }//GEN-LAST:event_buttonForRefreshActionPerformed
 
     /**
