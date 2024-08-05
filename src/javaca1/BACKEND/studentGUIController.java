@@ -16,7 +16,7 @@ public class studentGUIController {
         boolean found = false;
         StringBuilder nameResults = new StringBuilder();
         
-        for(Student student : TxtFileReader.students){
+        for(Student student : StudentManagement.students){
             if(student.getName().equalsIgnoreCase(name)){
                 nameResults.append("Name: ").append(student.getName()).append("\n");
                 nameResults.append("Admin Number: ").append(student.getAdminNo()).append("\n");
@@ -55,7 +55,7 @@ public class studentGUIController {
         double totalGPA = 0.0;
         StringBuilder classResults = new StringBuilder();
         
-        for(Student student : TxtFileReader.students){
+        for(Student student : StudentManagement.students){
             if(student.getClasses().equalsIgnoreCase(classInput)){
                 classResults.append("Name: ").append(student.getName()).append("\n");
                 classResults.append("Admin Number: ").append(student.getAdminNo()).append("\n");
@@ -95,7 +95,7 @@ public class studentGUIController {
         boolean found = false;
         int moduleCount = 0;
         
-        for(Student student : TxtFileReader.students){
+        for(Student student : StudentManagement.students){
             if(student.getAdminNo().equalsIgnoreCase(adminNoInput)){
                 adminNoResults.append("Name: ").append(student.getName()).append("\n");
                 adminNoResults.append("Admin Number: ").append(student.getAdminNo()).append("\n");
