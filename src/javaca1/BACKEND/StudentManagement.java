@@ -12,8 +12,7 @@ import javax.swing.JOptionPane;
 public class StudentManagement {
     
     //Student objects
-    public static Student[] students = {
-    };
+    public static Student[] students = {};
     
     //Add new Students
     public static void create_student(String name, String adminNo, String classes, Module[] modules) {

@@ -33,14 +33,15 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
         initialize();
     }
     
-    public void displayStudentData(){
-        String studentData = TxtFileReader.loadStudentData();
-//        textAreaForResults.setText(studentData);
-        this.studentData = studentData.split("---------------\n"); // Assuming each student data ends with "---------------"
-        updatePage();
-    }
+public void displayStudentData() {
+    String studentData = TxtFileReader.loadStudentData();
+    // Split data into pages
+    this.studentData = studentData.split("---------------\n"); // Assuming each student data ends with "---------------"
+    updatePage();
+}
+
     
-    private void updatePage() {
+private void updatePage() {
     if (studentData == null || studentData.length == 0) {
         textAreaForResults.setText("No data available.");
         return;
@@ -61,7 +62,7 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
     
     textAreaForResults.setText(pageData.toString());
 }
-    
+                                      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -358,34 +359,37 @@ public class StudentEnquiryLecturerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonForSearchActionPerformed
 
     private void buttonForRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForRefreshActionPerformed
-        // TODO add your handling code here:
-        // Load student data from the file
-        String studentData = TxtFileReader.loadStudentData();
+    // Load student data from the file
+    String studentData = TxtFileReader.loadStudentData();
     
-        // Display the data in the JTextArea
-        textAreaForResults.setText(studentData);
+    // Split the data into pages
+    this.studentData = studentData.split("---------------\n");
+    
+    // Reset to the first page
+    this.currentPage = 1;
+    
+    // Update the displayed page
+    updatePage();
     }//GEN-LAST:event_buttonForRefreshActionPerformed
 
     private void buttonForNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForNextActionPerformed
-        // TODO add your handling code here:
-        if (studentData != null && (currentPage * PAGE_SIZE) < studentData.length) {
+    if (studentData != null && (currentPage * PAGE_SIZE) < studentData.length) {
         currentPage++;
         updatePage();
     } else {
         textAreaForResults.setText("No more pages.");
-    }
+    }   
     }//GEN-LAST:event_buttonForNextActionPerformed
 
     private void buttonForPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForPreviousActionPerformed
-        // TODO add your handling code here:
-        if (currentPage > 1) {
+    if (currentPage > 1) {
         currentPage--;
         updatePage();
     } else {
         textAreaForResults.setText("You are already on the first page.");
     }
     }//GEN-LAST:event_buttonForPreviousActionPerformed
-    
+
     private String getSelectedSearchMode() {
         if (radioButtonForName.isSelected()) {
             return "Name";
